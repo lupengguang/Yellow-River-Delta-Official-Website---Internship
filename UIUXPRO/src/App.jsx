@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useSearchParams, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useSearchParams, useNavigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HeroSection from './components/HeroSection';
@@ -13,6 +13,7 @@ import ImageCarousel from './components/ImageCarousel';
 import NotificationList from './components/NotificationList';
 import ProjectProgressList from './components/ProjectProgressList';
 import ResearchResultList from './components/ResearchResultList';
+import ReserveIntro from './pages/ReserveIntro';
 
 // 主页组件
 function Home() {
@@ -43,7 +44,7 @@ function OtherResults() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {/* GPS定位拍照APP */}
-          <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+          <div className="glass-card p-6">
             <h2 className="text-xl font-semibold text-blue-700 mb-4">GPS定位拍照APP</h2>
             <p className="text-gray-600 mb-4">
               GPS定位拍照APP是为了便利工作人员在野外进行定位和获取数据而特别设计的APP，具备智能手机定位、野外拍照记录、GPS坐标获取及处理、数据管理等功能，是一款非常实用的野外工作助手。
@@ -56,7 +57,7 @@ function OtherResults() {
           </div>
           
           {/* 关于我们 */}
-          <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+          <div className="glass-card p-6">
             <h2 className="text-xl font-semibold text-blue-700 mb-4">关于我们</h2>
             <p className="text-gray-600 mb-4">
               了解平台的发展历程、团队成员、研究方向以及联系方式等信息。
@@ -69,7 +70,7 @@ function OtherResults() {
           </div>
           
           {/* 公众号 */}
-          <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+          <div className="glass-card p-6">
             <h2 className="text-xl font-semibold text-blue-700 mb-4">公众号</h2>
             <p className="text-gray-600 mb-4">
               关注我们的官方微信公众号，获取最新的平台动态、研究成果、数据资源以及技术分享等内容。
@@ -82,7 +83,7 @@ function OtherResults() {
           </div>
           
           {/* 项目成果 */}
-          <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+          <div className="glass-card p-6">
             <h2 className="text-xl font-semibold text-blue-700 mb-4">项目成果</h2>
             <p className="text-gray-600 mb-4">
               展示平台团队承担的各类科研项目及其取得的成果，包括国家级、省部级项目等。
@@ -95,7 +96,7 @@ function OtherResults() {
           </div>
           
           {/* 相关文献 */}
-          <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+          <div className="glass-card p-6">
             <h2 className="text-xl font-semibold text-blue-700 mb-4">相关文献</h2>
             <p className="text-gray-600 mb-4">
               汇集与黄河三角洲资源环境科学研究相关的学术论文、专著、报告等文献资料，方便用户查阅和引用。
@@ -177,7 +178,7 @@ function WechatArticleDetail() {
         
         <h1 className="text-3xl font-bold text-gray-800 mb-8">公众号文章详情</h1>
         
-        <div className="bg-white rounded-lg shadow-md p-8">
+        <div className="glass-card p-8">
           {loading ? (
             <div className="text-center text-gray-500">
               <svg className="animate-spin h-8 w-8 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -317,7 +318,7 @@ function Wechat() {
           </div>
           
           {/* 右侧详情区域 */}
-          <div className="lg:w-3/4 bg-white rounded-lg shadow-md p-8 min-h-[400px]">
+          <div className="lg:w-3/4 glass-card p-8 min-h-[400px]">
             {activeTab === 'home' ? (
               <div className="text-center text-gray-500">
                 <p>点击"官方公众号"或"碳基智能公众号"查看相关内容</p>
@@ -343,7 +344,7 @@ function Wechat() {
                 {articles.map((article) => (
                   <div 
                     key={article.id} 
-                    className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-all cursor-pointer hover:border-blue-400"
+                    className="glass-card p-4 cursor-pointer"
                     onClick={() => handleArticleClick(article)}
                   >
                     {article.image_url && (
@@ -421,7 +422,7 @@ function Projects() {
       <div className="container mx-auto px-4">
         <h1 className="text-3xl font-bold text-gray-800 mb-8">项目成果</h1>
         
-        <div className="bg-white rounded-lg shadow-md p-8">
+        <div className="glass-card p-8">
           <h2 className="text-xl font-semibold text-blue-700 mb-6">科研项目列表</h2>
           
           {loading ? (
@@ -442,7 +443,7 @@ function Projects() {
               {projects.map((project) => (
                 <div 
                   key={project.id} 
-                  className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-all"
+                  className="glass-card p-4"
                 >
                   <h3 className="text-lg font-medium text-gray-800 mb-2">
                     {getProjectTypeLabel(project.project_type)}：{project.title}
@@ -504,7 +505,7 @@ function Literature() {
       <div className="container mx-auto px-4">
         <h1 className="text-3xl font-bold text-gray-800 mb-8">相关文献</h1>
         
-        <div className="bg-white rounded-lg shadow-md p-8">
+        <div className="glass-card p-8">
           {loading ? (
             <div className="text-center py-8">
               <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600 mx-auto"></div>
@@ -523,7 +524,7 @@ function Literature() {
               {literatures.map((item) => (
                 <div 
                   key={item.id} 
-                  className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-all bg-gray-50"
+                  className="glass-card p-4"
                 >
                   <h3 className="text-lg font-medium text-gray-800 mb-2">{item.title}</h3>
                   {item.journal && <p className="text-gray-600 text-sm">期刊: {item.journal}</p>}
@@ -565,7 +566,7 @@ function HelpCenter() {
         <div className="flex flex-col lg:flex-row gap-6">
           {/* 左侧导航 */}
           <div className="lg:w-1/4">
-            <div className="bg-white rounded-lg shadow-md p-4">
+            <div className="glass-card p-4">
               <h2 className="text-lg font-semibold text-blue-700 mb-4">网站数据下载说明</h2>
               <div className="space-y-2">
                 <button className="w-full text-left p-3 bg-blue-100 text-blue-700 rounded-lg font-medium">
@@ -577,7 +578,7 @@ function HelpCenter() {
           
           {/* 右侧内容 */}
           <div className="lg:w-3/4">
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="glass-card p-6">
               <h2 className="text-xl font-semibold text-blue-700 mb-4">关于网站数据下载：</h2>
               
               <ol className="list-decimal pl-5 space-y-3 text-gray-600 mb-6">
@@ -788,7 +789,7 @@ function DatabaseCatalog() {
         
         <div className="flex flex-col lg:flex-row gap-6">
           {/* 左侧数据库目录 */}
-          <div className="lg:w-1/4 bg-white rounded-lg shadow-md p-4">
+          <div className="lg:w-1/4 glass-card p-4">
             <h2 className="text-xl font-semibold text-blue-700 mb-4">数据库目录</h2>
             
             {loading ? (
@@ -803,11 +804,11 @@ function DatabaseCatalog() {
           {/* 右侧内容区域 */}
           <div className="lg:w-3/4">
             {contentLoading ? (
-              <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+              <div className="glass-card p-4 mb-6">
                 <div className="text-center py-8">加载中...</div>
               </div>
             ) : selectedContent ? (
-              <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+              <div className="glass-card p-4 mb-6">
                 <h3 className="text-lg font-semibold text-blue-700 mb-4">{selectedContent.catalogName}</h3>
                 {/* 元数据信息 */}
                 <div className="mb-4 p-3 bg-gray-50 rounded">
@@ -833,7 +834,7 @@ function DatabaseCatalog() {
                 <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: selectedContent.content }} />
               </div>
             ) : (
-              <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+              <div className="glass-card p-4 mb-6">
                 <ImageCarousel />
               </div>
             )}
@@ -841,13 +842,13 @@ function DatabaseCatalog() {
             {/* 并排区域：通知新闻 + 项目进展 */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               {/* 左侧：通知新闻 */}
-              <div className="bg-blue-50 rounded-lg shadow-md p-4">
+              <div className="glass-panel p-4">
                 <h3 className="text-lg font-bold text-gray-800 mb-4 border-b-2 border-blue-500 pb-2">通知新闻</h3>
                 <NotificationList />
               </div>
               
               {/* 右侧：项目进展 */}
-              <div className="bg-green-50 rounded-lg shadow-md p-4">
+              <div className="glass-panel p-4">
                 <h3 className="text-lg font-bold text-gray-800 mb-4 border-b-2 border-green-500 pb-2">项目进展</h3>
                 <ProjectProgressList />
               </div>
@@ -878,7 +879,7 @@ function GpsApp() {
       <div className="container mx-auto px-4">
         <h1 className="text-3xl font-bold text-gray-800 mb-8">GPS定位拍照APP</h1>
         
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+        <div className="glass-card p-6 mb-8">
           <div className="flex flex-col md:flex-row gap-6">
             {/* 左侧内容 */}
             <div className="md:w-2/3">
@@ -917,7 +918,7 @@ function GpsApp() {
             
             {/* 右侧图片 */}
             <div className="md:w-1/3 space-y-4">
-              <div className="bg-gray-100 p-4 rounded-lg text-center">
+              <div className="glass-frame p-4 text-center">
                 <img 
                   src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=GPS%20app%20interface%2C%20map%20location%2C%20mobile%20app%20design&image_size=square" 
                   alt="APP界面" 
@@ -925,7 +926,7 @@ function GpsApp() {
                 />
                 <p className="text-sm text-gray-600">APP主界面</p>
               </div>
-              <div className="bg-gray-100 p-4 rounded-lg text-center">
+              <div className="glass-frame p-4 text-center">
                 <img 
                   src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=GPS%20app%20camera%20interface%2C%20taking%20photo%2C%20mobile%20app%20design&image_size=square" 
                   alt="拍照界面" 
@@ -933,7 +934,7 @@ function GpsApp() {
                 />
                 <p className="text-sm text-gray-600">拍照界面</p>
               </div>
-              <div className="bg-gray-100 p-4 rounded-lg text-center">
+              <div className="glass-frame p-4 text-center">
                 <img 
                   src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=QR%20code%20for%20app%20download%2C%20black%20and%20white%20QR%20code&image_size=square" 
                   alt="下载二维码" 
@@ -996,7 +997,7 @@ function AboutUs() {
                 <p className="text-gray-600">QQ:660685985</p>
               </div>
               <div className="flex justify-center items-center">
-                <div className="bg-gray-100 p-4 rounded-lg text-center">
+                <div className="glass-frame p-4 text-center">
                   <img 
                     src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=QR%20code%20for%20contact%2C%20black%20and%20white%20QR%20code&image_size=square" 
                     alt="联系二维码" 
@@ -1133,7 +1134,7 @@ function AboutUs() {
           </div>
           
           {/* 右侧内容区域 */}
-          <div className="lg:w-3/4 bg-white rounded-lg shadow-md p-6">
+          <div className="lg:w-3/4 glass-card p-6">
             {renderContent()}
           </div>
         </div>
@@ -1151,13 +1152,33 @@ function AboutUs() {
 
 // 已出版数据页面
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+
+  // 玻璃卡片：聚光灯跟随鼠标
+  useEffect(() => {
+    const handlePointerMove = (event) => {
+      const card = event.target.closest('.glass-card, .glass-card-soft, .glass-panel');
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${event.clientX - rect.left}px`);
+      card.style.setProperty('--my', `${event.clientY - rect.top}px`);
+    };
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    return () => window.removeEventListener('pointermove', handlePointerMove);
+  }, []);
+
+  // 路由切换后回到页面顶部
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
-    <Router>
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1">
-          <Routes>
+    <>
+      <Navbar />
+      <main className="flex-1">
+        <div key={location.pathname} className="page-transition">
+          <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/database-catalog" element={<DatabaseCatalog />} />
             <Route path="/other-results" element={<OtherResults />} />
@@ -1168,9 +1189,20 @@ function App() {
             <Route path="/other-results/projects" element={<Projects />} />
             <Route path="/other-results/literature" element={<Literature />} />
             <Route path="/help-center" element={<HelpCenter />} />
+            <Route path="/reserve-intro" element={<ReserveIntro />} />
           </Routes>
-        </main>
-        <Footer />
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <div className="min-h-screen flex flex-col">
+        <AppContent />
       </div>
     </Router>
   );

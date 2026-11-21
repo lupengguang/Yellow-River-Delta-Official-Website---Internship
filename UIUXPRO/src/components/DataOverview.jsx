@@ -21,7 +21,7 @@ function DataOverview() {
         {/* 核心数据提示卡 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
           {coreData.map((item, index) => (
-            <div key={index} className="bg-green-50 rounded-lg p-4 text-center hover:bg-green-100 transition-all">
+            <div key={index} className="glass-card-soft p-4 text-center">
               <p className="text-sm text-gray-600 mb-1">{item.label}</p>
               <p className="text-2xl font-bold text-green-700 mb-1">{item.value}</p>
               <p className="text-xs text-gray-500">{item.description}</p>
@@ -63,7 +63,7 @@ function DataOverview() {
           </div>
           
           {/* 右侧图片 */}
-          <div className="rounded-lg overflow-hidden shadow-lg">
+          <div className="glass-frame">
             <img 
               src="/images/001.jpg" 
               alt="数据平台" 

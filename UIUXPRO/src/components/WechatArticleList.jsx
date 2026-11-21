@@ -34,15 +34,15 @@ function WechatArticleList() {
   };
 
   if (loading) {
-    return <div className="bg-white rounded-lg shadow-md p-4 mb-6"><p className="text-center text-gray-500">加载中...</p></div>;
+    return <div className="glass-card p-4 mb-6"><p className="text-center text-gray-500">加载中...</p></div>;
   }
 
   if (error) {
-    return <div className="bg-white rounded-lg shadow-md p-4 mb-6"><p className="text-center text-red-500">加载失败: {error}</p></div>;
+    return <div className="glass-card p-4 mb-6"><p className="text-center text-red-500">加载失败: {error}</p></div>;
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+    <div className="glass-card p-4 mb-6">
       {/* 标题栏 */}
       <div className="flex justify-between items-center mb-4">
         <div className="bg-blue-600 text-white px-4 py-2 font-bold">

@@ -11,7 +11,7 @@ function WetlandProtection() {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* 左侧图片 */}
-          <div className="rounded-lg overflow-hidden shadow-lg">
+          <div className="glass-frame">
             <img 
               src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Wetland%20restoration%20in%20Yellow%20River%20Delta%2C%20ecological%20restoration%2C%20beautiful%20wetland%20scenery&image_size=landscape_4_3" 
               alt="湿地保护修复" 

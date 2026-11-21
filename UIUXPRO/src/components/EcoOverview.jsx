@@ -29,7 +29,7 @@ function EcoOverview() {
           </div>
           
           {/* 右侧图片 */}
-          <div className="rounded-lg overflow-hidden shadow-lg">
+          <div className="glass-frame">
             <img 
               src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Yellow%20River%20Delta%20wetland%20ecosystem%2C%20birds%20in%20wetland%2C%20beautiful%20natural%20scenery&image_size=landscape_4_3" 
               alt="黄河三角洲生态系统" 

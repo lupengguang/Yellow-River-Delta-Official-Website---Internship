@@ -12,7 +12,7 @@ function ResearchAndNews() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="glass-card p-6">
               <h3 className="text-xl font-semibold text-green-700 mb-4">中国科学院黄河三角洲滨海湿地生态试验站</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-2">
@@ -34,7 +34,7 @@ function ResearchAndNews() {
               </ul>
             </div>
             
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="glass-card p-6">
               <h3 className="text-xl font-semibold text-blue-700 mb-4">其他科研平台</h3>
               <div className="mb-6">
                 <h4 className="font-medium text-gray-800 mb-2">国家生态质量综合监测站——山东黄河三角洲站（湿地）</h4>
@@ -65,23 +65,23 @@ function ResearchAndNews() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-blue-50 rounded-lg p-6">
+            <div className="glass-card-soft p-6">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">数据资源总量</h3>
               <p className="text-gray-600">整合气象、水文、土壤、海洋、生物多样性等多源监测数据</p>
             </div>
             
-            <div className="bg-blue-50 rounded-lg p-6">
+            <div className="glass-card-soft p-6">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">数据共享服务</h3>
               <p className="text-gray-600">提供生态环境监测数据查询、湿地动态遥感影像、生物多样性观测记录</p>
             </div>
             
-            <div className="bg-blue-50 rounded-lg p-6">
+            <div className="glass-card-soft p-6">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">平台系统</h3>
               <p className="text-gray-600">基于WEBGIS的黄河三角洲大数据示范应用平台；黄河三角洲生态环境与生物多样性信息系统V1.0</p>
             </div>
           </div>
           
-          <div className="mt-8 bg-white rounded-lg shadow-md p-6">
+          <div className="mt-8 glass-card p-6">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">数据产品类型</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               <div className="flex items-center gap-2">
@@ -118,7 +118,7 @@ function ResearchAndNews() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="glass-card overflow-hidden">
               <div className="h-48 bg-gray-200 flex items-center justify-center">
                 <img 
                   src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Eco%20water%20supplement%20project%2C%20wetland%20restoration%2C%20environmental%20protection&image_size=landscape_4_3" 
@@ -133,7 +133,7 @@ function ResearchAndNews() {
               </div>
             </div>
             
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="glass-card overflow-hidden">
               <div className="h-48 bg-gray-200 flex items-center justify-center">
                 <img 
                   src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Bird%20watching%20event%2C%20Yellow%20River%20Delta%2C%20tourists%20with%20binoculars&image_size=landscape_4_3" 
@@ -148,7 +148,7 @@ function ResearchAndNews() {
               </div>
             </div>
             
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="glass-card overflow-hidden">
               <div className="h-48 bg-gray-200 flex items-center justify-center">
                 <img 
                   src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=National%20park%20construction%20progress%2C%20Yellow%20River%20Delta%2C%20infrastructure&image_size=landscape_4_3" 

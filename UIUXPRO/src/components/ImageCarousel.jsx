@@ -152,7 +152,7 @@ function ImageCarousel() {
   return (
     <div className="relative w-full">
       {/* 主图片区域 */}
-      <div className="relative rounded-lg overflow-hidden shadow-lg">
+      <div className="relative glass-frame overflow-hidden">
         {/* 如果有链接，使用Link包裹 */}
         {hasCatalogLink ? (
           <Link to={getCatalogUrl()}>

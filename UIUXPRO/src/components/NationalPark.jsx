@@ -56,7 +56,7 @@ function NationalPark() {
           </div>
           
           {/* 右侧图片 */}
-          <div className="rounded-lg overflow-hidden shadow-lg">
+          <div className="glass-frame">
             <img 
               src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Yellow%20River%20Delta%20National%20Park%2C%20aerial%20view%2C%20beautiful%20landscape%2C%20wetland%20area&image_size=landscape_4_3" 
               alt="黄河口国家公园" 

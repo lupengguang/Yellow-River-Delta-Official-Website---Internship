@@ -38,7 +38,7 @@ function MonitoringIndicators() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {indicators.map((category, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div key={index} className="glass-card p-6">
               <h3 className="text-lg font-semibold text-green-700 mb-4">{category.title}</h3>
               <ul className="space-y-2">
                 {category.items.map((item, itemIndex) => (

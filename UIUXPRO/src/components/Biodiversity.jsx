@@ -65,7 +65,7 @@ function Biodiversity() {
               </ul>
             </div>
             
-            <div className="rounded-lg overflow-hidden shadow-lg">
+            <div className="glass-frame">
               <img 
                 src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Birds%20in%20Yellow%20River%20Delta%2C%20wetland%20birds%2C%20natural%20habitat&image_size=landscape_4_3" 
                 alt="黄河三角洲鸟类" 

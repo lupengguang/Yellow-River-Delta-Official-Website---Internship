@@ -2,17 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =========================================================
+   全局：玻璃拟态设计系统
+   ========================================================= */
+:root {
+  --primary-color: #10b981;
+  --secondary-color: #6b7280;
+  --success-color: #22c55e;
+  --danger-color: #ef4444;
+  --warning-color: #f59e0b;
+  --info-color: #3b82f6;
+  --light-color: #f3f4f6;
+  --dark-color: #1f2937;
+
+  /* 玻璃拟态令牌 */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.7);
+  --glass-shadow: 0 8px 32px rgba(15, 68, 62, 0.08), 0 2px 8px rgba(15, 68, 62, 0.04);
+  --glass-shadow-hover: 0 24px 48px -12px rgba(16, 122, 100, 0.28), 0 8px 20px rgba(15, 68, 62, 0.1);
+  --glass-highlight: rgba(255, 255, 255, 0.85);
+  --glass-glow: rgba(16, 185, 129, 0.35);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* 自定义样式 */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
   color: #333;
-  background-color: #f8fafc;
+  background-color: #eef5f3;
+  /* 背景极光层，为玻璃卡片提供可折射的色彩 */
+  background-image:
+    radial-gradient(900px 620px at 10% 6%, rgba(16, 185, 129, 0.20), transparent 62%),
+    radial-gradient(820px 560px at 92% 12%, rgba(59, 130, 246, 0.18), transparent 60%),
+    radial-gradient(760px 540px at 50% 96%, rgba(34, 211, 238, 0.16), transparent 62%);
+  background-attachment: fixed;
 }
 
 /* 平滑滚动 */
 html {
   scroll-behavior: smooth;
+}
+
+/* 让各区块透出背景色，玻璃效果才可见 */
+main section,
+main > div[class*="min-h-screen"] {
+  background-color: transparent !important;
 }
 
 /* 响应式调整 */
@@ -25,7 +61,309 @@ html {
   }
 }
 
-/* 卡片悬停效果 */
+/* =========================================================
+   玻璃卡片：基础 + 复杂悬停交互
+   ========================================================= */
+.glass-card,
+.glass-card-soft,
+.glass-panel {
+  position: relative;
+  isolation: isolate;
+  border-radius: 1rem;
+  border: 1px solid var(--glass-border);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.38));
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+  transition:
+    transform 0.5s var(--ease-out-expo),
+    box-shadow 0.5s var(--ease-out-expo),
+    border-color 0.4s ease,
+    background 0.4s ease;
+  overflow: hidden;
+}
+
+/* 顶部高光弧线 */
+.glass-card::before,
+.glass-card-soft::before,
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), transparent 38%);
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* 跟随鼠标的聚光灯 */
+.glass-card::after,
+.glass-card-soft::after,
+.glass-panel::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.75),
+    rgba(16, 185, 129, 0.10) 42%,
+    transparent 68%
+  );
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.glass-card:hover::after,
+.glass-card-soft:hover::after,
+.glass-panel:hover::after {
+  opacity: 1;
+}
+
+/* 悬停：抬升 + 彩色光晕 + 边框点亮 */
+.glass-card:hover,
+.glass-card-soft:hover,
+.glass-panel:hover {
+  transform: translateY(-8px) scale(1.012);
+  border-color: rgba(16, 185, 129, 0.45);
+  box-shadow: var(--glass-shadow-hover), inset 0 1px 0 var(--glass-highlight);
+}
+
+/* 悬停时内部标题有轻微色移 */
+.glass-card:hover h3,
+.glass-card-soft:hover h3,
+.glass-panel:hover h3 {
+  color: #047857;
+  transition: color 0.35s ease;
+}
+
+/* 卡片内图片：悬停放大 */
+.glass-card img,
+.glass-card-soft img,
+.glass-panel img {
+  transition: transform 0.7s var(--ease-out-expo), filter 0.5s ease;
+}
+
+.glass-card:hover img,
+.glass-card-soft:hover img,
+.glass-panel:hover img {
+  transform: scale(1.05);
+}
+
+/* 带图片的玻璃画框 */
+.glass-frame {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.6s var(--ease-out-expo), box-shadow 0.6s var(--ease-out-expo);
+}
+
+.glass-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+}
+
+.glass-frame img {
+  transition: transform 0.8s var(--ease-out-expo), filter 0.6s ease;
+  display: block;
+}
+
+.glass-frame:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.glass-frame:hover img {
+  transform: scale(1.07);
+  filter: saturate(1.08) contrast(1.03);
+}
+
+/* =========================================================
+   导航栏
+   ========================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.58);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  backdrop-filter: blur(20px) saturate(170%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 10px 34px -18px rgba(6, 78, 59, 0.35);
+}
+
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.2rem;
+  font-weight: 500;
+  color: #374151;
+  transition: color 0.3s ease, transform 0.4s var(--ease-out-expo), text-shadow 0.4s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #10b981, #3b82f6, #22d3ee);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.45s var(--ease-out-expo);
+}
+
+.nav-link:hover {
+  color: #047857;
+  transform: translateY(-2px);
+  text-shadow: 0 6px 18px rgba(16, 185, 129, 0.35);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.nav-link.is-active {
+  color: #047857;
+}
+
+.nav-link.is-active::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* 活动项背后的玻璃胶囊 */
+.nav-link.is-active::before {
+  content: '';
+  position: absolute;
+  inset: -6px -14px;
+  border-radius: 9999px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  z-index: -1;
+  animation: navPill 0.45s var(--ease-out-expo) both;
+}
+
+@keyframes navPill {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   页面切换动画
+   ========================================================= */
+.page-transition {
+  animation: pageIn 0.6s var(--ease-out-expo) both;
+  will-change: transform, opacity, filter;
+}
+
+.page-transition > section,
+.page-transition > div > section {
+  animation: sectionIn 0.7s var(--ease-out-expo) both;
+}
+
+.page-transition > section:nth-child(2),
+.page-transition > div > section:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.page-transition > section:nth-child(3),
+.page-transition > div > section:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.page-transition > section:nth-child(4),
+.page-transition > div > section:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+.page-transition > section:nth-child(n + 5),
+.page-transition > div > section:nth-child(n + 5) {
+  animation-delay: 0.32s;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0) scale(0.992);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes sectionIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* =========================================================
+   按钮 / 链接交互
+   ========================================================= */
+.btn,
+.btn-primary,
+.btn-secondary {
+  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s ease, background 0.3s ease;
+}
+
+.btn:hover,
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 12px 26px -10px rgba(22, 93, 255, 0.55);
+}
+
+/* 卡片内“查看详情”箭头位移 */
+.glass-card:hover a span,
+.glass-card-soft:hover a span {
+  transform: translateX(4px);
+}
+
+/* 卡片悬停时列表圆点发光 */
+.glass-card:hover li > div.rounded-full,
+.glass-card-soft:hover li > div.rounded-full {
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.16);
+  transition: box-shadow 0.4s ease;
+}
+
+/* 卡片悬停效果（保留旧类兼容） */
 .card-hover {
   transition: all 0.3s ease;
 }
@@ -66,36 +404,9 @@ html {
   @apply bg-green-100 text-green-700;
 }
 
-/* 颜色变量 */
-:root {
-  --primary-color: #10b981;
-  --secondary-color: #6b7280;
-  --success-color: #22c55e;
-  --danger-color: #ef4444;
-  --warning-color: #f59e0b;
-  --info-color: #3b82f6;
-  --light-color: #f3f4f6;
-  --dark-color: #1f2937;
-}
-
-/* 导航栏链接样式 */
+/* 导航栏链接样式（兼容旧规则） */
 nav a {
   position: relative;
-}
-
-nav a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -2px;
-  left: 0;
-  background-color: #10b981;
-  transition: width 0.3s ease;
-}
-
-nav a:hover::after {
-  width: 100%;
 }
 
 /* 卡片阴影 */
@@ -124,4 +435,21 @@ ul, ol {
 img {
   max-width: 100%;
   height: auto;
+}
+
+/* =========================================================
+   无障碍：尊重系统“减少动态效果”
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }

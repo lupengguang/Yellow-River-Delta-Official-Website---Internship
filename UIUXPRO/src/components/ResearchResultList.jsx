@@ -48,7 +48,7 @@ function ResearchResultList() {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-lg shadow-md p-4">
+      <div className="glass-card p-4">
         <div className="flex justify-between items-center mb-4">
           <div className="bg-blue-600 text-white px-4 py-2 font-bold">最新研究成果</div>
         </div>
@@ -59,7 +59,7 @@ function ResearchResultList() {
 
   if (error) {
     return (
-      <div className="bg-white rounded-lg shadow-md p-4">
+      <div className="glass-card p-4">
         <div className="flex justify-between items-center mb-4">
           <div className="bg-blue-600 text-white px-4 py-2 font-bold">最新研究成果</div>
         </div>
@@ -69,7 +69,7 @@ function ResearchResultList() {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4">
+    <div className="glass-card p-4">
       {/* 标题栏 */}
       <div className="flex justify-between items-center mb-4">
         <div className="bg-blue-600 text-white px-4 py-2 font-bold">最新研究成果</div>
@@ -111,7 +111,7 @@ function ResearchResultList() {
       {showModal && selectedResult && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={closeModal}>
           <div
-            className="bg-white rounded-lg shadow-xl max-w-lg w-full mx-4 p-6"
+            className="glass-card max-w-lg w-full mx-4 p-6"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4">
