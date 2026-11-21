@@ -14,11 +14,7 @@ function Navbar() {
   // 处理数据库目录点击，强制跳转到不带参数的页面
   const handleCatalogClick = () => {
     setOpen(false);
-    if (location.pathname === '/database-catalog') {
-      window.location.href = '/database-catalog';
-    } else {
-      navigate('/database-catalog');
-    }
+    navigate('/database-catalog');
   };
 
   const navItems = [

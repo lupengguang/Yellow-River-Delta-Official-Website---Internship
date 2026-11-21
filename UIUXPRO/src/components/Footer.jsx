@@ -12,7 +12,7 @@ function Footer() {
             <ul className="space-y-2">
               <li><Link to="/reserve-intro" className="inline-block text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1">保护区简介</Link></li>
               <li><Link to="/organizational-structure" className="inline-block text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1">组织结构</Link></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">联系我们</a></li>
+              <li><Link to="/other-results/about" className="inline-block text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1">联系我们</Link></li>
             </ul>
           </div>
           
@@ -20,9 +20,9 @@ function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">数据资源</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-300 hover:text-white">监测数据</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">遥感影像</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">科研成果</a></li>
+              <li><Link to="/eco-environment-monitoring" className="inline-block text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1">监测数据</Link></li>
+              <li><Link to="/database-catalog" className="inline-block text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1">遥感影像</Link></li>
+              <li><Link to="/other-results/literature" className="inline-block text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1">科研成果</Link></li>
             </ul>
           </div>
           
@@ -52,9 +52,9 @@ function Footer() {
               <p className="text-gray-400 text-sm">Copyright © 山东黄河三角洲国家级自然保护区</p>
             </div>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white text-sm">法律声明</a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm">隐私政策</a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm">网站地图</a>
+              <Link to="/help-center" className="text-gray-400 hover:text-white text-sm transition-colors duration-300">法律声明</Link>
+              <Link to="/help-center" className="text-gray-400 hover:text-white text-sm transition-colors duration-300">隐私政策</Link>
+              <Link to="/" className="text-gray-400 hover:text-white text-sm transition-colors duration-300">网站地图</Link>
             </div>
           </div>
           <div className="mt-4 text-center text-gray-500 text-xs">
