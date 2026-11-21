@@ -17,6 +17,7 @@ import ReserveIntro from './pages/ReserveIntro';
 import NationalParkConstruction from './pages/NationalParkConstruction';
 import WetlandRestoration from './pages/WetlandRestoration';
 import EcologicalMonitoring from './pages/EcologicalMonitoring';
+import OrganizationStructure from './pages/OrganizationStructure';
 
 // 主页组件
 function Home() {
@@ -1196,6 +1197,7 @@ function AppContent() {
             <Route path="/national-park-construction" element={<NationalParkConstruction />} />
             <Route path="/wetland-restoration" element={<WetlandRestoration />} />
             <Route path="/eco-environment-monitoring" element={<EcologicalMonitoring />} />
+            <Route path="/organizational-structure" element={<OrganizationStructure />} />
           </Routes>
         </div>
       </main>

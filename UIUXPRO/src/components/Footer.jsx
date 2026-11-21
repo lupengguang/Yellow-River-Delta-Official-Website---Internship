@@ -11,7 +11,7 @@ function Footer() {
             <h3 className="text-lg font-semibold mb-4">关于我们</h3>
             <ul className="space-y-2">
               <li><Link to="/reserve-intro" className="inline-block text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1">保护区简介</Link></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">组织结构</a></li>
+              <li><Link to="/organizational-structure" className="inline-block text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1">组织结构</Link></li>
               <li><a href="#" className="text-gray-300 hover:text-white">联系我们</a></li>
             </ul>
           </div>
