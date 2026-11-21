@@ -18,6 +18,7 @@ import NationalParkConstruction from './pages/NationalParkConstruction';
 import WetlandRestoration from './pages/WetlandRestoration';
 import EcologicalMonitoring from './pages/EcologicalMonitoring';
 import OrganizationStructure from './pages/OrganizationStructure';
+import LegalStatement from './pages/LegalStatement';
 
 // 主页组件
 function Home() {
@@ -1198,6 +1199,7 @@ function AppContent() {
             <Route path="/wetland-restoration" element={<WetlandRestoration />} />
             <Route path="/eco-environment-monitoring" element={<EcologicalMonitoring />} />
             <Route path="/organizational-structure" element={<OrganizationStructure />} />
+            <Route path="/legal" element={<LegalStatement />} />
           </Routes>
         </div>
       </main>

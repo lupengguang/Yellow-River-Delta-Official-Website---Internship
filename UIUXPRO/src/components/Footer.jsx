@@ -52,8 +52,8 @@ function Footer() {
               <p className="text-gray-400 text-sm">Copyright © 山东黄河三角洲国家级自然保护区</p>
             </div>
             <div className="flex space-x-4">
-              <Link to="/help-center" className="text-gray-400 hover:text-white text-sm transition-colors duration-300">法律声明</Link>
-              <Link to="/help-center" className="text-gray-400 hover:text-white text-sm transition-colors duration-300">隐私政策</Link>
+              <Link to="/legal" className="text-gray-400 hover:text-white text-sm transition-colors duration-300">法律声明</Link>
+              <Link to="/legal#privacy" className="text-gray-400 hover:text-white text-sm transition-colors duration-300">隐私政策</Link>
               <Link to="/" className="text-gray-400 hover:text-white text-sm transition-colors duration-300">网站地图</Link>
             </div>
           </div>

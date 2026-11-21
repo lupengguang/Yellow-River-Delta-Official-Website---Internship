@@ -646,6 +646,132 @@ img {
 }
 
 /* =========================================================
+   法律声明页：跳转动画与锚点导航交互
+   ========================================================= */
+/* 进入页面时的整屏幕帘 */
+.legal-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background: linear-gradient(135deg, #065f46, #0f766e 45%, #0c4a6e);
+  animation: legalCurtain 0.95s var(--ease-out-expo) forwards;
+}
+
+@keyframes legalCurtain {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+/* 文档内容依次浮现 */
+.legal-section {
+  animation: legalSectionIn 0.7s var(--ease-out-expo) both;
+}
+
+@keyframes legalSectionIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 侧边锚点导航条目 */
+.legal-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.6rem;
+  border-radius: 0.7rem;
+  color: #4b5563;
+  font-size: 0.8rem;
+  transition:
+    transform 0.4s var(--ease-out-expo),
+    background 0.35s ease,
+    color 0.3s ease,
+    box-shadow 0.4s ease;
+}
+
+.legal-nav-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #10b981, #0ea5e9);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.legal-nav-item:hover {
+  transform: translateX(6px);
+  background: rgba(255, 255, 255, 0.72);
+  color: #047857;
+  box-shadow: 0 8px 20px -14px rgba(6, 78, 59, 0.5);
+}
+
+.legal-nav-item:hover::before,
+.legal-nav-item.is-active::before {
+  transform: scaleY(1);
+}
+
+.legal-nav-item.is-active {
+  background: rgba(16, 185, 129, 0.1);
+  color: #047857;
+  font-weight: 600;
+}
+
+.legal-nav-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 0.5rem;
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  font-size: 0.65rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition:
+    transform 0.4s var(--ease-out-expo),
+    background 0.35s ease,
+    color 0.3s ease;
+}
+
+.legal-nav-item:hover .legal-nav-num,
+.legal-nav-item.is-active .legal-nav-num {
+  background: linear-gradient(135deg, #10b981, #0891b2);
+  color: #fff;
+  transform: rotate(-8deg) scale(1.1);
+}
+
+.legal-nav-arrow {
+  margin-left: auto;
+  opacity: 0;
+  transform: translateX(-6px);
+  color: #059669;
+  font-size: 0.75rem;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.legal-nav-item:hover .legal-nav-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* =========================================================
    无障碍：尊重系统“减少动态效果”
    ========================================================= */
 @media (prefers-reduced-motion: reduce) {
