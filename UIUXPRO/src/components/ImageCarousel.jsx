@@ -46,7 +46,7 @@ const imageCatalogMap = {
 };
 
 // 图片列表 - 从 data/images 目录获取
-const images = [
+const imageList = [
   { src: '/images/黄河三角洲土地利用数据.png', alt: '黄河三角洲土地利用数据' },
   { src: '/images/黄河三角洲NDVI.png', alt: '黄河三角洲NDVI' },
   { src: '/images/黄河三角洲NPP.png', alt: '黄河三角洲NPP' },
@@ -88,6 +88,12 @@ const images = [
   { src: '/images/铁路缩略图.png', alt: '铁路缩略图' },
   { src: '/images/居民点缩略图.png', alt: '居民点缩略图' },
 ];
+
+// 拼接部署基路径，兼容 GitHub Pages 子路径
+const images = imageList.map((item) => ({
+  ...item,
+  src: `${import.meta.env.BASE_URL}${item.src.replace(/^\//, '')}`,
+}));
 
 function ImageCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);

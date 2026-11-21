@@ -65,7 +65,7 @@ function DataOverview() {
           {/* 右侧图片 */}
           <div className="glass-frame">
             <img 
-              src="/images/001.jpg" 
+              src={`${import.meta.env.BASE_URL}images/001.jpg`} 
               alt="数据平台" 
               className="w-full h-auto"
             />

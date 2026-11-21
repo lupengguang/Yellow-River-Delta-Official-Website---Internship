@@ -612,7 +612,7 @@ function HelpCenter() {
                 </div>
                 <div className="flex-shrink-0">
                   <img 
-                    src="/images/二维码.png" 
+                    src={`${import.meta.env.BASE_URL}images/二维码.png`} 
                     alt="联系二维码" 
                     className="w-48 h-48 rounded"
                   />
@@ -1004,7 +1004,7 @@ function AboutUs() {
               <div className="flex justify-center items-center">
                 <div className="glass-frame p-4 text-center">
                   <img 
-                    src="/images/二维码.png" 
+                    src={`${import.meta.env.BASE_URL}images/二维码.png`} 
                     alt="联系二维码" 
                     className="w-48 h-48 rounded"
                   />
@@ -1023,7 +1023,7 @@ function AboutUs() {
               <div className="text-center">
                 <div className="w-32 h-32 mx-auto mb-3 rounded-full overflow-hidden bg-gray-200">
                   <img 
-                    src="/images/陆鹏光.jpg" 
+                    src={`${import.meta.env.BASE_URL}images/陆鹏光.jpg`} 
                     alt="陆鹏光" 
                     className="w-full h-full object-cover"
                   />
@@ -1060,7 +1060,7 @@ function AboutUs() {
               <div className="text-center">
                 <div className="w-32 h-32 mx-auto mb-3 rounded-full overflow-hidden bg-gray-200">
                   <img 
-                    src="/images/张靖哲.jpg" 
+                    src={`${import.meta.env.BASE_URL}images/张靖哲.jpg`} 
                     alt="张靖哲" 
                     className="w-full h-full object-cover"
                   />
@@ -1085,7 +1085,7 @@ function AboutUs() {
               <div className="text-center">
                 <div className="w-32 h-32 mx-auto mb-3 rounded-full overflow-hidden bg-gray-200">
                   <img 
-                    src="/images/王宇欣.jpg" 
+                    src={`${import.meta.env.BASE_URL}images/王宇欣.jpg`} 
                     alt="王宇欣" 
                     className="w-full h-full object-cover"
                   />
