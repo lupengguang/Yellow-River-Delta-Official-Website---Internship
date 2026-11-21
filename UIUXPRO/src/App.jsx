@@ -14,6 +14,9 @@ import NotificationList from './components/NotificationList';
 import ProjectProgressList from './components/ProjectProgressList';
 import ResearchResultList from './components/ResearchResultList';
 import ReserveIntro from './pages/ReserveIntro';
+import NationalParkConstruction from './pages/NationalParkConstruction';
+import WetlandRestoration from './pages/WetlandRestoration';
+import EcologicalMonitoring from './pages/EcologicalMonitoring';
 
 // 主页组件
 function Home() {
@@ -1190,6 +1193,9 @@ function AppContent() {
             <Route path="/other-results/literature" element={<Literature />} />
             <Route path="/help-center" element={<HelpCenter />} />
             <Route path="/reserve-intro" element={<ReserveIntro />} />
+            <Route path="/national-park-construction" element={<NationalParkConstruction />} />
+            <Route path="/wetland-restoration" element={<WetlandRestoration />} />
+            <Route path="/eco-environment-monitoring" element={<EcologicalMonitoring />} />
           </Routes>
         </div>
       </main>

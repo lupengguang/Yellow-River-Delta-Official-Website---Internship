@@ -438,6 +438,214 @@ img {
 }
 
 /* =========================================================
+   专题页：复杂悬停交互
+   ========================================================= */
+/* 3D 倾斜卡片（由 JS 写入 transform） */
+.topic-tilt {
+  will-change: transform;
+  transition:
+    transform 0.35s var(--ease-out-expo),
+    box-shadow 0.5s var(--ease-out-expo),
+    border-color 0.4s ease;
+}
+
+.topic-tilt:hover {
+  z-index: 2;
+}
+
+/* 斜向掠光 */
+.topic-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.topic-sheen::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -80%;
+  width: 46%;
+  height: 220%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: rotate(18deg);
+  transition: left 0.75s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.topic-sheen:hover::after {
+  left: 135%;
+}
+
+/* 悬停展开内容：同时支持键盘聚焦与触屏 */
+.hover-expand {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-6px);
+  transition:
+    max-height 0.55s var(--ease-out-expo),
+    opacity 0.35s ease,
+    transform 0.55s var(--ease-out-expo);
+}
+
+.group:hover .hover-expand,
+.group:focus-within .hover-expand {
+  max-height: 320px;
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: none) {
+  .hover-expand {
+    max-height: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 展开条目 */
+.topic-row {
+  border-radius: 0.9rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid transparent;
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.topic-row:hover,
+.topic-row:focus-within {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(16, 185, 129, 0.25);
+  box-shadow: 0 10px 24px -18px rgba(6, 78, 59, 0.6);
+  outline: none;
+}
+
+.topic-chevron {
+  transition: transform 0.4s var(--ease-out-expo), color 0.3s ease;
+}
+
+.group:hover .topic-chevron,
+.group:focus-within .topic-chevron {
+  transform: rotate(180deg);
+  color: #047857;
+}
+
+.topic-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: #10b981;
+  flex-shrink: 0;
+  transition: box-shadow 0.4s ease, transform 0.4s var(--ease-out-expo);
+}
+
+.group:hover .topic-dot,
+.group:focus-within .topic-dot {
+  box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.16);
+  transform: scale(1.18);
+}
+
+/* 占比分段条 */
+.topic-seg {
+  transition: filter 0.4s ease, box-shadow 0.4s ease;
+}
+
+.topic-seg .seg-label {
+  transition: transform 0.4s var(--ease-out-expo), opacity 0.4s ease;
+}
+
+.topic-seg:hover {
+  filter: saturate(1.25) brightness(1.06);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.65);
+}
+
+.topic-seg:hover .seg-label {
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+/* 数字浮动 + 变色 */
+.topic-float {
+  transition: transform 0.5s var(--ease-out-expo), color 0.4s ease;
+}
+
+.group:hover .topic-float,
+.topic-tilt:hover .topic-float {
+  transform: translateY(-4px) scale(1.06);
+  color: #047857;
+}
+
+/* 流动虚线（数据闭环） */
+@keyframes topicDashMove {
+  to {
+    background-position: 40px 0;
+  }
+}
+
+.topic-dash-x {
+  height: 2px;
+  background-image: repeating-linear-gradient(90deg, #10b981 0 8px, transparent 8px 16px);
+  animation: topicDashMove 1.2s linear infinite;
+}
+
+/* 渐变扫光标题 */
+.topic-gradient-text {
+  background: linear-gradient(90deg, #047857, #0891b2, #2563eb, #047857);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: topicGradientMove 9s linear infinite;
+}
+
+@keyframes topicGradientMove {
+  to {
+    background-position: 300% 0;
+  }
+}
+
+/* 环形指标 */
+.topic-ring {
+  background: conic-gradient(#10b981 var(--p, 70%), rgba(16, 185, 129, 0.12) 0);
+  transition: transform 0.55s var(--ease-out-expo), filter 0.4s ease;
+}
+
+.group:hover .topic-ring {
+  transform: rotate(-8deg) scale(1.06);
+  filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.35));
+}
+
+/* 监测层级条：悬停向右侧延伸 */
+.topic-layer {
+  transition:
+    transform 0.45s var(--ease-out-expo),
+    background 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.topic-layer:hover {
+  transform: translateX(6px);
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+/* 流程节点 */
+.topic-step {
+  transition:
+    transform 0.45s var(--ease-out-expo),
+    box-shadow 0.45s ease,
+    border-color 0.4s ease;
+}
+
+.topic-step:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+/* =========================================================
    无障碍：尊重系统“减少动态效果”
    ========================================================= */
 @media (prefers-reduced-motion: reduce) {

@@ -30,9 +30,9 @@ function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">快速链接</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-300 hover:text-white">国家公园建设</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">湿地保护修复</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">生态环境监测</a></li>
+              <li><Link to="/national-park-construction" className="inline-block text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1">国家公园建设</Link></li>
+              <li><Link to="/wetland-restoration" className="inline-block text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1">湿地保护修复</Link></li>
+              <li><Link to="/eco-environment-monitoring" className="inline-block text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1">生态环境监测</Link></li>
             </ul>
           </div>
           
