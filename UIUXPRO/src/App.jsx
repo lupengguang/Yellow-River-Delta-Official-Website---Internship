@@ -1022,7 +1022,7 @@ function AboutUs() {
               <div className="text-center">
                 <div className="w-32 h-32 mx-auto mb-3 rounded-full overflow-hidden bg-gray-200">
                   <img 
-                    src="https://img.cdn1.vip/i/6a087b596a764_1778940761.webp" 
+                    src="/images/陆鹏光.jpg" 
                     alt="陆鹏光" 
                     className="w-full h-full object-cover"
                   />
@@ -1059,7 +1059,7 @@ function AboutUs() {
               <div className="text-center">
                 <div className="w-32 h-32 mx-auto mb-3 rounded-full overflow-hidden bg-gray-200">
                   <img 
-                    src="https://img.cdn1.vip/i/6a087b474c82c_1778940743.jpg" 
+                    src="/images/张靖哲.jpg" 
                     alt="张靖哲" 
                     className="w-full h-full object-cover"
                   />
@@ -1084,7 +1084,7 @@ function AboutUs() {
               <div className="text-center">
                 <div className="w-32 h-32 mx-auto mb-3 rounded-full overflow-hidden bg-gray-200">
                   <img 
-                    src="https://img.cdn1.vip/i/6a087b335e6f7_1778940723.jpg" 
+                    src="/images/王宇欣.jpg" 
                     alt="王宇欣" 
                     className="w-full h-full object-cover"
                   />
