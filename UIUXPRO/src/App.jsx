@@ -611,7 +611,7 @@ function HelpCenter() {
                 </div>
                 <div className="flex-shrink-0">
                   <img 
-                    src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=QR%20code%20for%20contact%2C%20black%20and%20white%20QR%20code&image_size=square" 
+                    src="/images/二维码.png" 
                     alt="联系二维码" 
                     className="w-48 h-48 rounded"
                   />
@@ -1003,7 +1003,7 @@ function AboutUs() {
               <div className="flex justify-center items-center">
                 <div className="glass-frame p-4 text-center">
                   <img 
-                    src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=QR%20code%20for%20contact%2C%20black%20and%20white%20QR%20code&image_size=square" 
+                    src="/images/二维码.png" 
                     alt="联系二维码" 
                     className="w-48 h-48 rounded"
                   />
