@@ -1,0 +1,34 @@
+# ===== 前端 =====
+node_modules/
+dist/
+.vite/
+*.local
+
+# ===== Python =====
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+temp_wheels/
+
+# ===== 大体积视频（超过 GitHub 100MB 单文件限制，需单独托管）=====
+UIUXPRO/public/videos/
+
+# ===== 环境变量与密钥 =====
+.env
+*.env
+!.env.example
+
+# ===== 日志与临时输出 =====
+*.log
+server_output*.txt
+minimal_server_output.txt
+
+# ===== 编辑器/系统 =====
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
