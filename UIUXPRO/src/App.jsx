@@ -26,6 +26,8 @@ import SanjiangyuanAtlas from './pages/SanjiangyuanAtlas';
 import EcoEnvironmentTutorial from './pages/EcoEnvironmentTutorial';
 import PythonOpenSourceGis from './pages/PythonOpenSourceGis';
 import Cng2013 from './pages/Cng2013';
+import Cng2015 from './pages/Cng2015';
+import UrbanHeatEnvironment from './pages/UrbanHeatEnvironment';
 
 // 主页组件
 function Home() {
@@ -1214,6 +1216,8 @@ function AppContent() {
             <Route path="/professional-books/eco-environment-tutorial" element={<EcoEnvironmentTutorial />} />
             <Route path="/professional-books/python-open-source-gis" element={<PythonOpenSourceGis />} />
             <Route path="/professional-books/cng-2013" element={<Cng2013 />} />
+            <Route path="/professional-books/cng-2015" element={<Cng2015 />} />
+            <Route path="/professional-books/urban-heat-environment" element={<UrbanHeatEnvironment />} />
           </Routes>
         </div>
       </main>

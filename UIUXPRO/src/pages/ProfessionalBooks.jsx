@@ -45,14 +45,16 @@ const books = [
     category: '期刊杂志',
     image: '中国国家地理中国国家地理2015年典藏版.png',
     author: '',
-    price: 200
+    price: 200,
+    link: '/professional-books/cng-2015'
   },
   {
-    title: '城市热环境：格局·机制与模拟',
+    title: '城市热环境：格局·机理·模拟',
     category: '土地利用相关',
     image: '徐新良、乔治、田光进城市热环境格局-机理R.png',
     author: '徐新良、乔治、田光进',
-    price: 100
+    price: 100,
+    link: '/professional-books/urban-heat-environment'
   },
   {
     title: '土地利用/覆被变化时空分析',
