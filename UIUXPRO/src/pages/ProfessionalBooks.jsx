@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { PageBanner } from './topicPageKit';
 
-const cover = (file) => `${import.meta.env.BASE_URL}images/books/${file}`;
+const cover = (file) => `${import.meta.env.BASE_URL}images/${file}`;
 
 const categories = ['生态系统', '软件操作', '期刊杂志', '土地利用相关', '一带一路', '遥感监测'];
 
@@ -9,121 +9,122 @@ const books = [
   {
     title: '青海三江源生态系统遥感监测图集',
     category: '生态系统',
-    image: 'sanjiangyuan-eco-rs.jpg',
-    author: '徐新良、肖艳伟、刘影 等',
+    image: '徐新良 肖桐詹志明......青海三江源生态系统遥感监测图集.png',
+    author: '徐新良、肖桐、詹志明 等',
     price: 80,
     fit: 'contain'
   },
   {
     title: '生态环境空间信息与数字技术综合实验教程',
     category: '生态系统',
-    image: 'eco-space-tech.jpg',
+    image: '乔治等生态环境空间信息与数字技术综合实验教程。.png',
     author: '乔治 等',
     price: 90
   },
   {
     title: 'Python与开源GIS：数据处理、空间分析与地图制图',
     category: '软件操作',
-    image: 'python-gis.jpg',
-    author: '',
+    image: '卜坤Python与开源GIS一数据处.png',
+    author: '卜坤',
     price: 108
   },
   {
     title: '中国国家地理2013年典藏版',
     category: '期刊杂志',
-    image: 'cng-2013.jpg',
+    image: '中国国家地理中国国家地理2013年典藏版.png',
     author: '',
     price: 200
   },
   {
     title: '中国国家地理2015年典藏版',
     category: '期刊杂志',
-    image: 'cng-2015.jpg',
+    image: '中国国家地理中国国家地理2015年典藏版.png',
     author: '',
     price: 200
   },
   {
     title: '城市热环境：格局·机制与模拟',
     category: '土地利用相关',
-    image: 'urban-heat.jpg',
+    image: '徐新良、乔治、田光进城市热环境格局-机理R.png',
     author: '徐新良、乔治、田光进',
     price: 100
   },
   {
     title: '土地利用/覆被变化时空分析',
     category: '土地利用相关',
-    image: 'land-use-dark.jpg',
+    image: '徐新良等析方法及应用土地利用覆被变化时空信息分.png',
     author: '徐新良',
     price: 100
   },
   {
     title: '城市土地利用时空信息数据重建、分析与模拟',
     category: '土地利用相关',
-    image: 'land-use-urban.jpg',
+    image: '匡文慧城市土地利用时空信息数据重建、分析与模拟.png',
     author: '匡文慧',
     price: 60
   },
   {
     title: '对比研究：农牧民对生态建设工程响应',
     category: '土地利用相关',
-    image: 'farmers-response.jpg',
+    image: '邵景安徐新良对比研究一农牧民对生态建设工程响应的以江.png',
     author: '邵景安、徐新良',
     price: 50
   },
   {
     title: '中国土地利用遥感监测',
     category: '土地利用相关',
-    image: 'land-use-rs.jpg',
-    author: '张增祥 等',
+    image: '张增祥 赵晓丽王潇..中国土地利用遥感监测.png',
+    author: '张增祥、赵晓丽、王潇 等',
     price: 200
   },
   {
     title: '“一带一路”蒙俄区生态环境遥感监测',
     category: '一带一路',
-    image: 'belt-road-ru.jpg',
-    author: '徐新良 等',
+    image: "徐新良,李静,王勇....'一带一路”蒙俄区生态环境逼感监测.png",
+    author: '徐新良、李静、王勇 等',
     price: 70
   },
   {
     title: '“一带一路”港口城市生态环境遥感监测',
     category: '一带一路',
-    image: 'belt-road-port.jpg',
+    image: '侯西勇宋洋徐新良......“一带一路”港口城市生态环境遥感监测.png',
     author: '侯西勇、宋洋、徐新良 等',
     price: 70
   },
   {
     title: '亚非欧部分国家和地区脆弱性评价图集',
     category: '一带一路',
-    image: 'vulnerability-atlas.jpg',
+    image: '徐新良亚非欧部分国家和地区脆弱性评价图集.png',
     author: '徐新良',
-    price: 280
+    price: 280,
+    fit: 'contain'
   },
   {
-    title: '特色植物发展潜力遥感信息获取与评价',
+    title: '能源植物发展潜力遥感信息获取与评价',
     category: '遥感监测',
-    image: 'plant-potential.jpg',
-    author: '',
+    image: '庄大方 江东 刘磊能源植物发展潜力遥感信息获取与评价.png',
+    author: '庄大方、江东、刘磊',
     price: null
   },
   {
     title: '全球生态环境遥感监测2014年度报告',
     category: '遥感监测',
-    image: 'eco-rs-2014.jpg',
-    author: '',
+    image: '廖小罕施建成等全球生态环境遥感监测2014年度报告.png',
+    author: '廖小罕、施建成 等',
     price: null
   },
   {
     title: '全球生态环境遥感监测2015年度报告',
     category: '遥感监测',
-    image: 'eco-rs-2015.jpg',
-    author: '',
+    image: '李加洪 施建成等全球生态环境遥感监测2015年年度报告.png',
+    author: '李加洪、施建成 等',
     price: null
   },
   {
     title: '中国土地利用遥感监测图集',
     category: '遥感监测',
-    image: 'land-use-atlas.jpg',
-    author: '',
+    image: '张增祥等中国土地利用遥感监测图集.png',
+    author: '张增祥 等',
     price: null
   }
 ];

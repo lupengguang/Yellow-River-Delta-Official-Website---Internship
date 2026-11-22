@@ -19,7 +19,7 @@ import WetlandRestoration from './pages/WetlandRestoration';
 import EcologicalMonitoring from './pages/EcologicalMonitoring';
 import OrganizationStructure from './pages/OrganizationStructure';
 import LegalStatement from './pages/LegalStatement';
-import DataFirstRelease from './pages/DataFirstRelease';
+import DataPublishing from './pages/DataPublishing';
 import DataSearch from './pages/DataSearch';
 import ProfessionalBooks from './pages/ProfessionalBooks';
 
@@ -1203,7 +1203,7 @@ function AppContent() {
             <Route path="/eco-environment-monitoring" element={<EcologicalMonitoring />} />
             <Route path="/organizational-structure" element={<OrganizationStructure />} />
             <Route path="/legal" element={<LegalStatement />} />
-            <Route path="/data-first-release" element={<DataFirstRelease />} />
+            <Route path="/data-publishing" element={<DataPublishing />} />
             <Route path="/data-search" element={<DataSearch />} />
             <Route path="/professional-books" element={<ProfessionalBooks />} />
           </Routes>
