@@ -261,28 +261,44 @@ function WechatArticleDetail() {
 
 const wechatCover = (file) => `${import.meta.env.BASE_URL}images/${file}`;
 
-// 官方公众号文章卡片：前 3 篇已定标题，其余 5 篇标题待补充
+// 官方公众号文章卡片：8 篇标题已定，封面按标题同名图片匹配
 const officialArticles = [
   {
     id: 'official-1',
     title: '2026年黄河三角洲土壤健康与生态农业东营研讨会暨鲁东大学东营基地年会举行',
-    thumb: '黄河三角洲土地利用数据.png'
+    thumb: '2026年黄河三角洲土壤健康与生态农业东营研讨会暨鲁东大学东营基地年会举行.png'
   },
   {
     id: 'official-2',
     title: 'EGU丨2027专题征稿 HS10.19 人类活动改变的临界带中的水资源可及性、储存与连通性：机制、阈值与功能结果',
-    thumb: '黄河三角洲水系分布图.png'
+    thumb: 'EGU丨2027专题征稿 HS10.19 人类活动改变的临界带中的水资源可及性、储存与连通性：机制、阈值与功能结果.png'
   },
   {
     id: 'official-3',
     title: '鲁东大学赵英团队在园艺领域顶级期刊 Horticulture Research 发表研究论文',
     thumb: '鲁东大学赵英团队在园艺领域顶级期刊Horticulture Research发表研究论文.png'
   },
-  { id: 'official-4', title: '第六届中国同位素水文学论坛在南京市成功举办' },
-  { id: 'official-5', title: '国内外知名专家到访庆阳草地农业国家站' },
-  { id: 'official-6', title: '鲁东大学团队参加首届土地退化与修复国际会议' },
-  { id: 'official-7', title: '赵英教授团队参加EGU2026国际学术会议并赴德国开展科研合作交流' },
-  { id: 'official-8', title: '论文分享' }
+  {
+    id: 'official-4',
+    title: '第六届中国同位素水文学论坛在南京市成功举办',
+    thumb: '第六届中国同位素水文学论坛在南京市成功举办.png'
+  },
+  {
+    id: 'official-5',
+    title: '国内外知名专家到访庆阳草地农业国家站',
+    thumb: '国内外知名专家到访庆阳草地农业国家站.png'
+  },
+  {
+    id: 'official-6',
+    title: '鲁东大学团队参加首届土地退化与修复国际会议',
+    thumb: '鲁东大学团队参加首届土地退化与修复国际会议.png'
+  },
+  {
+    id: 'official-7',
+    title: '赵英教授团队参加EGU2026国际学术会议并赴德国开展科研合作交流',
+    thumb: '赵英教授团队参加EGU2026国际学术会议并赴德国开展科研合作交流.png'
+  },
+  { id: 'official-8', title: '论文分享', thumb: '论文分享.png' }
 ];
 
 function Wechat() {
