@@ -1,105 +1,275 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { PageBanner, SectionTitle } from './topicPageKit';
+import React, { useMemo, useState } from 'react';
+import { PageBanner } from './topicPageKit';
+
+const cover = (file) => `${import.meta.env.BASE_URL}images/books/${file}`;
+
+const categories = ['生态系统', '软件操作', '期刊杂志', '土地利用相关', '一带一路', '遥感监测'];
+
+const books = [
+  {
+    title: '生态环境空间信息与数字技术综合实验教程',
+    category: '生态系统',
+    image: 'eco-space-tech.jpg',
+    author: '',
+    price: null
+  },
+  {
+    title: 'Python与开源GIS：数据处理、空间分析与地图制图',
+    category: '软件操作',
+    image: 'python-gis.jpg',
+    author: '',
+    price: 108
+  },
+  {
+    title: '中国国家地理2013年典藏版',
+    category: '期刊杂志',
+    image: 'cng-2013.jpg',
+    author: '',
+    price: 200
+  },
+  {
+    title: '中国国家地理2015年典藏版',
+    category: '期刊杂志',
+    image: 'cng-2015.jpg',
+    author: '',
+    price: 200
+  },
+  {
+    title: '城市热环境：格局·机制与模拟',
+    category: '遥感监测',
+    image: 'urban-heat.jpg',
+    author: '徐新良、乔治、田光进',
+    price: 100
+  },
+  {
+    title: '土地利用/覆被变化时空分析',
+    category: '土地利用相关',
+    image: 'land-use-dark.jpg',
+    author: '',
+    price: null
+  },
+  {
+    title: '城市土地利用时空信息数据重建、分析与模拟',
+    category: '土地利用相关',
+    image: 'land-use-urban.jpg',
+    author: '匡文慧',
+    price: 60
+  },
+  {
+    title: '对比研究：农牧民对生态建设工程响应',
+    category: '生态系统',
+    image: 'farmers-response.jpg',
+    author: '邵景安、徐新良',
+    price: 50
+  },
+  {
+    title: '中国土地利用遥感监测',
+    category: '土地利用相关',
+    image: 'land-use-rs.jpg',
+    author: '张增祥 等',
+    price: 200
+  },
+  {
+    title: '“一带一路”蒙俄区生态环境遥感监测',
+    category: '一带一路',
+    image: 'belt-road-ru.jpg',
+    author: '徐新良 等',
+    price: 70
+  },
+  {
+    title: '亚非欧部分国家和地区脆弱性评价图集',
+    category: '生态系统',
+    image: 'vulnerability-atlas.jpg',
+    author: '',
+    price: null
+  },
+  {
+    title: '特色植物发展潜力遥感信息获取与评价',
+    category: '遥感监测',
+    image: 'plant-potential.jpg',
+    author: '',
+    price: null
+  },
+  {
+    title: '全球生态环境遥感监测2014年度报告',
+    category: '遥感监测',
+    image: 'eco-rs-2014.jpg',
+    author: '',
+    price: null
+  },
+  {
+    title: '全球生态环境遥感监测2015年度报告',
+    category: '遥感监测',
+    image: 'eco-rs-2015.jpg',
+    author: '',
+    price: null
+  },
+  {
+    title: '中国土地利用遥感监测图集',
+    category: '土地利用相关',
+    image: 'land-use-atlas.jpg',
+    author: '',
+    price: null
+  }
+];
 
 function ProfessionalBooks() {
+  const [activeCategory, setActiveCategory] = useState('全部');
   const [query, setQuery] = useState('');
+
+  const filtered = useMemo(() => {
+    const keyword = query.trim().toLowerCase();
+    return books.filter((book) => {
+      if (activeCategory !== '全部' && book.category !== activeCategory) return false;
+      if (!keyword) return true;
+      return `${book.title} ${book.author} ${book.category}`.toLowerCase().includes(keyword);
+    });
+  }, [activeCategory, query]);
 
   return (
     <div className="pb-16 min-h-screen">
       <PageBanner
         kicker="PROFESSIONAL BOOKS"
         title="专业图书"
-        description="汇集黄河三角洲资源环境相关专业图书、工具书与数据集配套资料，为科研、教学与管理提供参考。"
-        chips={['书目整理中', '与数据初版同步更新']}
+        description="按图书分类汇集黄河三角洲资源环境相关专业图书、期刊与遥感监测图集，支持分类浏览与关键词检索。"
+        chips={[`${categories.length} 个图书分类`, `${books.length} 本图书`, '持续补充']}
       />
 
-      <section className="container mx-auto px-4 mt-12">
-        <div className="glass-card p-6 md:p-8">
-          <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="book-search-input">
-            搜索书名、作者或主题
-          </label>
-          <div className="relative">
-            <svg
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-emerald-500"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fillRule="evenodd"
-                d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <input
-              id="book-search-input"
-              type="text"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="例如：湿地生态、遥感、土壤"
-              className="w-full rounded-2xl border border-white/70 bg-white/70 py-3 pl-12 pr-4 text-sm text-gray-700 outline-none transition-all duration-300 placeholder:text-gray-400 focus:border-emerald-300 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10"
-            />
-          </div>
-          <p className="text-xs text-gray-500 mt-3 mb-0">
-            书目数据尚未接入，搜索功能将在首批书目发布后启用。
-          </p>
-        </div>
-      </section>
-
       <section className="container mx-auto px-4 mt-10">
-        <div className="glass-panel p-10 md:p-14 text-center">
-          <div className="mx-auto mb-5 w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center transition-transform duration-500 hover:rotate-6 hover:scale-110">
-            <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75A4.5 4.5 0 007.5 4.5H4.5v13.25h3A4.5 4.5 0 0112 20.25m0-13.5a4.5 4.5 0 014.5-2.25h3v13.25h-3A4.5 4.5 0 0012 20.25m0-13.5v13.5" />
-            </svg>
-          </div>
-          <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">专业图书数据整理中</h2>
-          <p className="text-sm text-gray-600 max-w-xl mx-auto mb-6">
-            首批书目将随平台数据初版同步发布。如需推荐图书或咨询馆藏信息，可通过帮助中心与我们联系。
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Link
-              to="/help-center"
-              className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm text-white shadow-lg shadow-emerald-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-700"
-            >
-              前往帮助中心 <span>→</span>
-            </Link>
-            <Link
-              to="/database-catalog"
-              className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white/70 px-5 py-2.5 text-sm text-emerald-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
-            >
-              浏览数据库目录 <span>→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="container mx-auto px-4 mt-16">
-        <SectionTitle index="说明" title="关于专业图书" subtitle="收录范围与后续安排" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {[
-            {
-              title: '收录方向',
-              desc: '黄河三角洲资源环境相关专业图书、工具书与数据集配套资料。'
-            },
-            {
-              title: '使用方式',
-              desc: '书目发布后将展示题名、作者、出版信息与获取方式，具体以页面展示为准。'
-            },
-            {
-              title: '更新与推荐',
-              desc: '书目与数据初版同步更新，欢迎通过帮助中心推荐需要补充的图书。'
-            }
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="topic-sheen rounded-2xl border border-white/70 bg-white/55 p-6 transition-all duration-500 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-500/10"
-            >
-              <h3 className="text-base font-semibold text-gray-800 mb-2">{item.title}</h3>
-              <p className="text-sm text-gray-600 mb-0">{item.desc}</p>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* 图书分类 */}
+          <aside className="lg:col-span-1">
+            <div className="lg:sticky lg:top-24 glass-panel p-4">
+              <div className="mb-3 flex items-center justify-between px-2">
+                <p className="text-xs font-semibold text-emerald-700 tracking-widest mb-0">图书分类</p>
+                <span className="text-[11px] text-gray-400">{books.length} 本</span>
+              </div>
+              <div className="space-y-1">
+                {['全部', ...categories].map((category) => {
+                  const count =
+                    category === '全部'
+                      ? books.length
+                      : books.filter((book) => book.category === category).length;
+                  const isActive = activeCategory === category;
+                  return (
+                    <button
+                      key={category}
+                      type="button"
+                      onClick={() => setActiveCategory(category)}
+                      className={`group flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-sm transition-all duration-300 ${
+                        isActive
+                          ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/25'
+                          : 'text-gray-600 hover:translate-x-1 hover:bg-white/70 hover:text-emerald-700'
+                      }`}
+                    >
+                      <span className="flex items-center gap-2">
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full transition-transform duration-300 group-hover:scale-150 ${
+                            isActive ? 'bg-white' : 'bg-emerald-400'
+                          }`}
+                        />
+                        {category === '全部' ? '全部图书' : category}
+                      </span>
+                      <span
+                        className={`rounded-full px-2 py-0.5 text-[11px] transition-colors duration-300 ${
+                          isActive ? 'bg-white/20 text-white' : 'bg-emerald-50 text-emerald-600'
+                        }`}
+                      >
+                        {count}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          ))}
+          </aside>
+
+          {/* 图书列表 */}
+          <div className="lg:col-span-3">
+            <div className="glass-card p-5 md:p-6 mb-6">
+              <div className="relative">
+                <svg
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-emerald-500"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <input
+                  type="text"
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  placeholder="搜索书名、作者或分类，例如：遥感、土地利用"
+                  className="w-full rounded-2xl border border-white/70 bg-white/70 py-3 pl-12 pr-4 text-sm text-gray-700 outline-none transition-all duration-300 placeholder:text-gray-400 focus:border-emerald-300 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10"
+                />
+              </div>
+              <div className="mt-3 flex items-center justify-between text-xs text-gray-500">
+                <span>
+                  {activeCategory === '全部' ? '全部图书' : activeCategory} · 共 {filtered.length} 本
+                </span>
+                {query && (
+                  <button
+                    type="button"
+                    onClick={() => setQuery('')}
+                    className="rounded-full px-2 py-1 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+                  >
+                    清空搜索
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {filtered.length === 0 ? (
+              <div className="glass-panel p-10 text-center">
+                <p className="text-lg font-semibold text-gray-700 mb-2">未找到匹配的图书</p>
+                <p className="text-sm text-gray-500 mb-0">试试其他关键词，或切换左侧图书分类。</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+                {filtered.map((book) => (
+                  <article
+                    key={book.title}
+                    className="group glass-card overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-emerald-500/10"
+                  >
+                    <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                      <img
+                        src={cover(book.image)}
+                        alt={book.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <span className="absolute left-2 top-2 rounded-full bg-black/45 px-2 py-0.5 text-[10px] text-white backdrop-blur-sm">
+                        {book.category}
+                      </span>
+                      {book.price !== null && (
+                        <span className="absolute bottom-2 right-2 rounded-full bg-rose-500/90 px-2.5 py-1 text-xs font-semibold text-white shadow-md">
+                          ¥ {book.price}
+                        </span>
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-sm font-semibold text-gray-800 leading-snug mb-1.5 transition-colors duration-300 group-hover:text-emerald-700">
+                        {book.title}
+                      </h3>
+                      <p className="text-xs text-gray-500 mb-0">
+                        {book.author || '作者信息待补充'}
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+
+            <p className="text-xs text-gray-400 mt-6 mb-0">
+              书目封面依据参考图片整理，部分作者、价格信息待补充；具体信息以正式出版物为准。
+            </p>
+          </div>
         </div>
       </section>
     </div>
