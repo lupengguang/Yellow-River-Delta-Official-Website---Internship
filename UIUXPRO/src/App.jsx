@@ -31,6 +31,11 @@ import UrbanHeatEnvironment from './pages/UrbanHeatEnvironment';
 import LuccSpatiotemporal from './pages/LuccSpatiotemporal';
 import UrbanLandUseReconstruction from './pages/UrbanLandUseReconstruction';
 import FarmersResponseComparison from './pages/FarmersResponseComparison';
+import BookVulnerabilityAtlas from './pages/BookVulnerabilityAtlas';
+import BookEnergyPlantPotential from './pages/BookEnergyPlantPotential';
+import BookGlobalEcoReport2014 from './pages/BookGlobalEcoReport2014';
+import BookGlobalEcoReport2015 from './pages/BookGlobalEcoReport2015';
+import BookLandUseAtlas from './pages/BookLandUseAtlas';
 
 // 主页组件
 function Home() {
@@ -1224,6 +1229,11 @@ function AppContent() {
             <Route path="/professional-books/lucc-spatiotemporal" element={<LuccSpatiotemporal />} />
             <Route path="/professional-books/urban-land-use-reconstruction" element={<UrbanLandUseReconstruction />} />
             <Route path="/professional-books/farmers-response-comparison" element={<FarmersResponseComparison />} />
+            <Route path="/professional-books/vulnerability-atlas" element={<BookVulnerabilityAtlas />} />
+            <Route path="/professional-books/energy-plant-potential" element={<BookEnergyPlantPotential />} />
+            <Route path="/professional-books/global-eco-report-2014" element={<BookGlobalEcoReport2014 />} />
+            <Route path="/professional-books/global-eco-report-2015" element={<BookGlobalEcoReport2015 />} />
+            <Route path="/professional-books/land-use-atlas" element={<BookLandUseAtlas />} />
           </Routes>
         </div>
       </main>

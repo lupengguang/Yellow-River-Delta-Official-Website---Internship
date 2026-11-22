@@ -21,6 +21,9 @@ UIUXPRO/public/videos/
 *.env
 !.env.example
 
+# ===== 本地数据库 =====
+backend/backend/*.db
+
 # ===== 日志与临时输出 =====
 *.log
 server_output*.txt

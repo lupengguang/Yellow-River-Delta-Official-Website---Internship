@@ -13,6 +13,12 @@ DB_USER = os.getenv("DB_USER", "postgres")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "")
 DB_NAME = os.getenv("DB_NAME", "huanghe_data")
 
+# 数据库连接地址；本地无 PostgreSQL 时可通过 .env 指定 SQLite
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}",
+)
+
 # JWT鉴权配置
 SECRET_KEY = os.getenv("SECRET_KEY", secrets.token_hex(32))  # 自动生成随机密钥
 ALGORITHM = "HS256"

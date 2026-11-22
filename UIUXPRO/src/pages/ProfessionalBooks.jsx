@@ -107,35 +107,40 @@ const books = [
     image: '徐新良亚非欧部分国家和地区脆弱性评价图集.png',
     author: '徐新良',
     price: 280,
-    fit: 'contain'
+    fit: 'contain',
+    link: '/professional-books/vulnerability-atlas'
   },
   {
     title: '能源植物发展潜力遥感信息获取与评价',
     category: '遥感监测',
     image: '庄大方 江东 刘磊能源植物发展潜力遥感信息获取与评价.png',
     author: '庄大方、江东、刘磊',
-    price: null
+    price: null,
+    link: '/professional-books/energy-plant-potential'
   },
   {
     title: '全球生态环境遥感监测2014年度报告',
     category: '遥感监测',
     image: '廖小罕施建成等全球生态环境遥感监测2014年度报告.png',
     author: '廖小罕、施建成 等',
-    price: null
+    price: null,
+    link: '/professional-books/global-eco-report-2014'
   },
   {
     title: '全球生态环境遥感监测2015年度报告',
     category: '遥感监测',
     image: '李加洪 施建成等全球生态环境遥感监测2015年年度报告.png',
     author: '李加洪、施建成 等',
-    price: null
+    price: null,
+    link: '/professional-books/global-eco-report-2015'
   },
   {
     title: '中国土地利用遥感监测图集',
     category: '遥感监测',
     image: '张增祥等中国土地利用遥感监测图集.png',
     author: '张增祥 等',
-    price: null
+    price: null,
+    link: '/professional-books/land-use-atlas'
   }
 ];
 
