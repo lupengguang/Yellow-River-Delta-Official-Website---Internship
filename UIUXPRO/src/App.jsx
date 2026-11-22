@@ -278,11 +278,11 @@ const officialArticles = [
     title: '鲁东大学赵英团队在园艺领域顶级期刊 Horticulture Research 发表研究论文',
     thumb: '鲁东大学赵英团队在园艺领域顶级期刊Horticulture Research发表研究论文.png'
   },
-  { id: 'official-4', title: '' },
-  { id: 'official-5', title: '' },
-  { id: 'official-6', title: '' },
-  { id: 'official-7', title: '' },
-  { id: 'official-8', title: '' }
+  { id: 'official-4', title: '第六届中国同位素水文学论坛在南京市成功举办' },
+  { id: 'official-5', title: '国内外知名专家到访庆阳草地农业国家站' },
+  { id: 'official-6', title: '鲁东大学团队参加首届土地退化与修复国际会议' },
+  { id: 'official-7', title: '赵英教授团队参加EGU2026国际学术会议并赴德国开展科研合作交流' },
+  { id: 'official-8', title: '论文分享' }
 ];
 
 function Wechat() {
