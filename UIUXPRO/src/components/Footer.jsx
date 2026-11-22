@@ -49,7 +49,7 @@ function Footer() {
         <div className="border-t border-gray-700 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <p className="text-gray-400 text-sm">Copyright © 山东黄河三角洲国家级自然保护区</p>
+              <p className="text-gray-400 text-sm mb-0">Copyright © 2014-2025 中国科学院地理科学与资源研究所 版权所有</p>
             </div>
             <div className="flex space-x-4">
               <Link to="/legal" className="text-gray-400 hover:text-white text-sm transition-colors duration-300">法律声明</Link>
@@ -57,8 +57,15 @@ function Footer() {
               <Link to="/" className="text-gray-400 hover:text-white text-sm transition-colors duration-300">网站地图</Link>
             </div>
           </div>
-          <div className="mt-4 text-center text-gray-500 text-xs">
-            <p>ICP备案号：鲁ICP备xxxxxxxx号-1 | 政府网站标识码：3705000000</p>
+          <div className="mt-5 border-t border-gray-700/60 pt-5 text-center text-gray-500 text-xs leading-relaxed space-y-1.5">
+            <p className="mb-0">技术与服务支持：北京宇世蓝图信息技术有限公司</p>
+            <p className="mb-0">备案编号：京ICP备05002838号-36　京公网安备11010502055484</p>
+            <p className="mb-0">地址：北京市朝阳区大屯路甲11号　邮编：100101</p>
+            <p className="mb-0">技术支持服务：碳基智能-Mind Mirror（公众号）</p>
+            <p className="mb-0">
+              资助项目：国家自然科学基金国际合作创新团队项目《黄河三角洲滨海关键带生态水文过程与可持续水资源管理（Coastal Critical Zone Ecohydrological Processes and Sustainable Water Management in the Yellow River Delta）》（W2541025）
+            </p>
+            <p className="mb-0">鲁东大学、南方海洋科学与工程广东省实验室（广州）版权所有</p>
           </div>
         </div>
       </div>
