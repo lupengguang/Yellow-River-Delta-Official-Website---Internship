@@ -20,6 +20,7 @@ import EcologicalMonitoring from './pages/EcologicalMonitoring';
 import OrganizationStructure from './pages/OrganizationStructure';
 import LegalStatement from './pages/LegalStatement';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import WechatEvent2026 from './pages/WechatEvent2026';
 import DataPublishing from './pages/DataPublishing';
 import DatasetDetail from './pages/DatasetDetail';
 import DataSearch from './pages/DataSearch';
@@ -266,7 +267,8 @@ const officialArticles = [
   {
     id: 'official-1',
     title: '2026年黄河三角洲土壤健康与生态农业东营研讨会暨鲁东大学东营基地年会举行',
-    thumb: '2026年黄河三角洲土壤健康与生态农业东营研讨会暨鲁东大学东营基地年会举行.png'
+    thumb: '2026年黄河三角洲土壤健康与生态农业东营研讨会暨鲁东大学东营基地年会举行.png',
+    link: '/other-results/wechat/official-1'
   },
   {
     id: 'official-2',
@@ -407,9 +409,12 @@ function Wechat() {
             </div>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                {articles.map((article, index) => (
-                  <article
+                {articles.map((article, index) => {
+                  const Wrapper = article.link ? Link : 'article';
+                  return (
+                  <Wrapper
                     key={article.id}
+                    {...(article.link ? { to: article.link } : {})}
                     className="group glass-card relative overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-blue-500/15"
                   >
                     <span className="absolute left-3 top-3 z-10 max-w-[calc(100%-4rem)] truncate rounded-full bg-black/45 px-2.5 py-0.5 text-[10px] text-white backdrop-blur-sm">
@@ -452,9 +457,16 @@ function Wechat() {
                       <p className="mb-0 text-xs text-gray-500">
                         {article.title ? accountName : '标题与正文稍后补充'}
                       </p>
+                      {article.link && (
+                        <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-blue-600">
+                          阅读全文
+                          <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                        </span>
+                      )}
                     </div>
-                  </article>
-                ))}
+                  </Wrapper>
+                  );
+                })}
               </div>
           </div>
         </div>
@@ -1560,6 +1572,7 @@ function AppContent() {
             <Route path="/other-results/about" element={<AboutUs />} />
             <Route path="/other-results/wechat" element={<Wechat />} />
             <Route path="/other-results/wechat/detail" element={<WechatArticleDetail />} />
+            <Route path="/other-results/wechat/official-1" element={<WechatEvent2026 />} />
             <Route path="/other-results/projects" element={<Projects />} />
             <Route path="/other-results/literature" element={<Literature />} />
             <Route path="/help-center" element={<HelpCenter />} />
