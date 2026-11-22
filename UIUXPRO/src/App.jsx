@@ -259,7 +259,7 @@ function WechatArticleDetail() {
   );
 }
 
-const wechatCover = (file) => `${import.meta.env.BASE_URL}images/${file}`;
+const wechatCover = (file) => `${import.meta.env.BASE_URL}images/${encodeURIComponent(file)}`;
 
 // 官方公众号文章卡片：8 篇标题已定，封面按标题同名图片匹配
 const officialArticles = [
@@ -301,31 +301,48 @@ const officialArticles = [
   { id: 'official-8', title: '论文分享', thumb: '论文分享.png' }
 ];
 
-// 碳基智能公众号文章卡片：前 5 篇已定标题，其余 3 篇留空
+// 碳基智能公众号文章卡片：8 篇标题已补全
 const carbonArticles = [
   {
     id: 'carbon-1',
-    title: '谷歌一夜连发两张牌：Gemini 4 Neon综合指数61分，高于GPT-6.2 Sol；Genie 4开始开放体验'
+    title: '谷歌一夜连发两张牌：Gemini 4 Neon综合指数61分，高于GPT-6.2 Sol；Genie 4开始开放体验',
+    thumb: '谷歌一夜连发两张牌：Gemini 4 Neon综合指数61分，高于GPT-6.2 Sol；Genie 4开始开放体验.webp'
   },
   {
     id: 'carbon-2',
-    title: '芯片界变天了！均分超越“GPT-6”？硬核黑马首提CDK：Fabless之后，半导体要迈入“Designless”时代了？'
+    title: '芯片界变天了！均分超越“GPT-6”？硬核黑马首提CDK：Fabless之后，半导体要迈入“Designless”时代了？',
+    thumb: '芯片界变天了！均分超越“GPT-6”？硬核黑马首提CDK：Fabless之后，半导体要迈入“Designless”时代了？.webp'
   },
   {
     id: 'carbon-3',
-    title: '刚刚，全球科技界彻底炸锅！4周干出650万行数学证明，AI正式攻破人类安全“终极防线”：软件无Bug时代真的来了？'
+    title: '刚刚，全球科技界彻底炸锅！4周干出650万行数学证明，AI正式攻破人类安全“终极防线”：软件无Bug时代真的来了？',
+    thumb: '刚刚，全球科技界彻底炸锅！4周干出650万行数学证明，AI正式攻破人类安全“终极防线”：软件无Bug时代真的来了？.webp'
   },
   {
     id: 'carbon-4',
-    title: '别再被“空翻机器人”骗了！刚刚，源策未来发布 Anchor 1：人形机器人最大的痛点，终于被中国团队干穿了！'
+    title: '别再被“空翻机器人”骗了！刚刚，源策未来发布 Anchor 1：人形机器人最大的痛点，终于被中国团队干穿了！',
+    thumb: '别再被“空翻机器人”骗了！刚刚，源策未来发布 Anchor 1：人形机器人最大的痛点，终于被中国团队干穿了！.png'
   },
   {
     id: 'carbon-5',
-    title: '刚刚！OpenAI深夜突发大动作，GPT-6.2 Astra绝密后台数据意外泄露！AGI史诗狂飙，但我们的钱包真要被榨干了？'
+    title: '刚刚！OpenAI深夜突发大动作，GPT-6.2 Astra绝密后台数据意外泄露！AGI史诗狂飙，但我们的钱包真要被榨干了？',
+    thumb: '刚刚！OpenAI深夜突发大动作，GPT-6.2 Astra绝密后台数据意外泄露！AGI史诗狂飙，但我们的钱包真要被榨干了？.png'
   },
-  { id: 'carbon-6', title: '' },
-  { id: 'carbon-7', title: '' },
-  { id: 'carbon-8', title: '' }
+  {
+    id: 'carbon-6',
+    title: '清华出手了！这份机器人“终极考卷”，让全球最强AI集体翻车——29.1%的成绩，究竟说明了什么？',
+    thumb: '清华出手了！这份机器人终极考卷，让全球最强AI集体翻车——29.1%的成绩，究竟说明了什么？.png'
+  },
+  {
+    id: 'carbon-7',
+    title: '顶级AI大模型集体炒A股，结果半数亏本——而你，连AI都不如？',
+    thumb: '顶级AI大模型集体炒A股，结果半数亏本——而你，连AI都不如？.png'
+  },
+  {
+    id: 'carbon-8',
+    title: '干了17小时不喊累、一句话造出3D桃花源城！蚂蚁百灵这个“打工AI”，彻底让我沉默了',
+    thumb: '干了17小时不喊累、一句话造出3D桃花源城！蚂蚁百灵这个打工AI，彻底让我沉默了.webp'
+  }
 ];
 
 function Wechat() {
