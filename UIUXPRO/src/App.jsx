@@ -925,27 +925,27 @@ function GpsApp() {
             <div className="md:w-1/3 space-y-4">
               <div className="glass-frame p-4 text-center">
                 <img 
-                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=GPS%20app%20interface%2C%20map%20location%2C%20mobile%20app%20design&image_size=square" 
+                  src={`${import.meta.env.BASE_URL}images/APP界面.jpg`} 
                   alt="APP界面" 
                   className="w-full h-auto rounded mb-2"
                 />
-                <p className="text-sm text-gray-600">APP主界面</p>
+                <p className="text-sm text-gray-600">APP界面</p>
               </div>
               <div className="glass-frame p-4 text-center">
                 <img 
-                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=GPS%20app%20camera%20interface%2C%20taking%20photo%2C%20mobile%20app%20design&image_size=square" 
-                  alt="拍照界面" 
+                  src={`${import.meta.env.BASE_URL}images/APP使用说明.jpg`} 
+                  alt="APP使用说明" 
                   className="w-full h-auto rounded mb-2"
                 />
-                <p className="text-sm text-gray-600">拍照界面</p>
+                <p className="text-sm text-gray-600">APP使用说明</p>
               </div>
               <div className="glass-frame p-4 text-center">
                 <img 
-                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=QR%20code%20for%20app%20download%2C%20black%20and%20white%20QR%20code&image_size=square" 
-                  alt="下载二维码" 
+                  src={`${import.meta.env.BASE_URL}images/下载APP软件.jpg`} 
+                  alt="下载APP软件" 
                   className="w-full h-auto rounded mb-2"
                 />
-                <p className="text-sm text-gray-600">下载APP二维码</p>
+                <p className="text-sm text-gray-600">下载APP软件</p>
               </div>
             </div>
           </div>
