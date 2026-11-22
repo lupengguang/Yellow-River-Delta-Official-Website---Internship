@@ -55,6 +55,33 @@ export function TiltCard({ children, className = '', base = 'glass-card', intens
   );
 }
 
+export function PageBanner({ kicker, title, description, chips = [] }) {
+  return (
+    <section className="relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-700 via-teal-700 to-sky-800" />
+      <div className="absolute -top-24 -right-16 w-80 h-80 rounded-full bg-emerald-300/20 blur-3xl" />
+      <div className="absolute -bottom-28 -left-10 w-72 h-72 rounded-full bg-sky-300/20 blur-3xl" />
+      <div className="relative container mx-auto px-4 py-14 md:py-20">
+        <p className="text-emerald-100/90 tracking-[0.35em] text-xs md:text-sm mb-3">{kicker}</p>
+        <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">{title}</h1>
+        <p className="text-emerald-50/90 max-w-2xl mb-6">{description}</p>
+        {chips.length > 0 && (
+          <div className="flex flex-wrap gap-3">
+            {chips.map((chip) => (
+              <span
+                key={chip}
+                className="rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs text-white/90 backdrop-blur-md transition-all duration-500 hover:-translate-y-0.5 hover:bg-white/20"
+              >
+                {chip}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 export function TopicHero({ kicker, title, description, image, alt, stats = [] }) {
   return (
     <>

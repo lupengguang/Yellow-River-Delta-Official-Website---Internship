@@ -19,6 +19,9 @@ import WetlandRestoration from './pages/WetlandRestoration';
 import EcologicalMonitoring from './pages/EcologicalMonitoring';
 import OrganizationStructure from './pages/OrganizationStructure';
 import LegalStatement from './pages/LegalStatement';
+import DataFirstRelease from './pages/DataFirstRelease';
+import DataSearch from './pages/DataSearch';
+import ProfessionalBooks from './pages/ProfessionalBooks';
 
 // 主页组件
 function Home() {
@@ -1200,6 +1203,9 @@ function AppContent() {
             <Route path="/eco-environment-monitoring" element={<EcologicalMonitoring />} />
             <Route path="/organizational-structure" element={<OrganizationStructure />} />
             <Route path="/legal" element={<LegalStatement />} />
+            <Route path="/data-first-release" element={<DataFirstRelease />} />
+            <Route path="/data-search" element={<DataSearch />} />
+            <Route path="/professional-books" element={<ProfessionalBooks />} />
           </Routes>
         </div>
       </main>

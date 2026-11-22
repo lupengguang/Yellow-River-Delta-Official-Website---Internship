@@ -20,6 +20,9 @@ function Navbar() {
   const navItems = [
     { to: '/', label: '网站首页', end: true },
     { to: '/database-catalog', label: '数据库目录', catalog: true },
+    { to: '/data-search', label: '数据搜索' },
+    { to: '/data-first-release', label: '数据初版' },
+    { to: '/professional-books', label: '专业图书' },
     { to: '/other-results', label: '其他成果' },
     { to: '/help-center', label: '帮助中心' }
   ];
@@ -39,7 +42,7 @@ function Navbar() {
           </NavLink>
 
           {/* 桌面端导航 */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center gap-4 lg:gap-7 text-sm lg:text-base">
             {navItems.map((item) =>
               item.catalog ? (
                 <button
@@ -90,7 +93,7 @@ function Navbar() {
         {/* 移动端折叠菜单 */}
         <div
           className={`md:hidden overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            open ? 'max-h-72 opacity-100 mt-3' : 'max-h-0 opacity-0'
+            open ? 'max-h-96 opacity-100 mt-3' : 'max-h-0 opacity-0'
           }`}
         >
           <div className="glass-panel p-2 flex flex-col gap-1">
