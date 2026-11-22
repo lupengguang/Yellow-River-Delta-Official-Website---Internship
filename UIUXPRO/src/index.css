@@ -772,6 +772,124 @@ img {
 }
 
 /* =========================================================
+   隐私政策页：卡片、表格与链接悬停交互
+   ========================================================= */
+.privacy-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.55s var(--ease-out-expo),
+    box-shadow 0.5s ease,
+    border-color 0.4s ease;
+}
+
+.privacy-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #10b981, #0ea5e9);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.55s var(--ease-out-expo);
+}
+
+.privacy-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 42%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+  transform: skewX(-18deg);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    left 0.9s ease,
+    opacity 0.5s ease;
+}
+
+.privacy-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(16, 185, 129, 0.32);
+  box-shadow: 0 26px 52px -30px rgba(6, 78, 59, 0.42);
+}
+
+.privacy-card:hover::before {
+  transform: scaleY(1);
+}
+
+.privacy-card:hover::after {
+  left: 118%;
+  opacity: 1;
+}
+
+.privacy-num {
+  transition:
+    transform 0.5s var(--ease-out-expo),
+    background 0.4s ease,
+    color 0.3s ease;
+}
+
+.privacy-card:hover .privacy-num {
+  background: linear-gradient(135deg, #10b981, #0891b2);
+  color: #fff;
+  transform: rotate(-7deg) scale(1.1);
+}
+
+.privacy-table tbody tr {
+  transition:
+    background 0.35s ease,
+    transform 0.35s var(--ease-out-expo);
+}
+
+.privacy-table tbody tr:hover {
+  background: rgba(16, 185, 129, 0.07);
+  transform: translateX(3px);
+}
+
+.rights-card {
+  transition:
+    transform 0.4s var(--ease-out-expo),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.rights-card:hover {
+  transform: translateY(-3px) scale(1.015);
+  border-color: rgba(16, 185, 129, 0.35);
+  box-shadow: 0 18px 34px -24px rgba(6, 78, 59, 0.4);
+}
+
+.privacy-link {
+  position: relative;
+  display: inline-block;
+  color: #047857;
+  font-weight: 500;
+}
+
+.privacy-link::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.privacy-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* =========================================================
    无障碍：尊重系统“减少动态效果”
    ========================================================= */
 @media (prefers-reduced-motion: reduce) {

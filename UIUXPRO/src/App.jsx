@@ -19,6 +19,7 @@ import WetlandRestoration from './pages/WetlandRestoration';
 import EcologicalMonitoring from './pages/EcologicalMonitoring';
 import OrganizationStructure from './pages/OrganizationStructure';
 import LegalStatement from './pages/LegalStatement';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import DataPublishing from './pages/DataPublishing';
 import DatasetDetail from './pages/DatasetDetail';
 import DataSearch from './pages/DataSearch';
@@ -258,60 +259,46 @@ function WechatArticleDetail() {
   );
 }
 
+const wechatCover = (file) => `${import.meta.env.BASE_URL}images/${file}`;
+
+// 官方公众号文章卡片：前 3 篇已定标题，其余 5 篇标题待补充
+const officialArticles = [
+  {
+    id: 'official-1',
+    title: '2026年黄河三角洲土壤健康与生态农业东营研讨会暨鲁东大学东营基地年会举行',
+    thumb: '黄河三角洲土地利用数据.png'
+  },
+  {
+    id: 'official-2',
+    title: 'EGU丨2027专题征稿 HS10.19 人类活动改变的临界带中的水资源可及性、储存与连通性：机制、阈值与功能结果',
+    thumb: '黄河三角洲水系分布图.png'
+  },
+  {
+    id: 'official-3',
+    title: '鲁东大学赵英团队在园艺领域顶级期刊 Horticulture Research 发表研究论文',
+    thumb: '鲁东大学赵英团队在园艺领域顶级期刊Horticulture Research发表研究论文.png'
+  },
+  { id: 'official-4', title: '' },
+  { id: 'official-5', title: '' },
+  { id: 'official-6', title: '' },
+  { id: 'official-7', title: '' },
+  { id: 'official-8', title: '' }
+];
+
 function Wechat() {
   const [activeTab, setActiveTab] = React.useState('official');
-  const [articles, setArticles] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
-  
-  React.useEffect(() => {
-    if (activeTab === 'home') {
-      return;
-    }
-    
-    const fetchArticles = async () => {
-      setLoading(true);
-      setError(null);
-      
-      try {
-        const wechatType = activeTab === 'official' ? 'official' : 'carbon';
-        const response = await fetch(`http://localhost:8000/api/wechat/${wechatType}/articles`);
-        
-        if (!response.ok) {
-          throw new Error('获取公众号文章失败');
-        }
-        
-        const data = await response.json();
-        setArticles(data.data || []);
-      } catch (err) {
-        setError(err.message);
-        console.error('Error fetching wechat articles:', err);
-        // 使用模拟数据
-        setArticles([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchArticles();
-  }, [activeTab]);
-  
+  const articles = activeTab === 'official' ? officialArticles : [];
+
   // 返回上一级
   const handleGoBack = () => {
     window.history.back();
   };
-  
-  // 点击文章进入详情页
-  const handleArticleClick = (article) => {
-    const wechatType = activeTab === 'official' ? 'official' : 'carbon';
-    window.location.href = `/other-results/wechat/detail?id=${article.id}&type=${wechatType}`;
-  };
-  
+
   return (
     <div className="py-8 bg-blue-50 min-h-screen">
       <div className="container mx-auto px-4">
         <h1 className="text-3xl font-bold text-gray-800 mb-8">公众号</h1>
-        
+
         <div className="flex flex-col lg:flex-row gap-6">
           {/* 左侧按钮区域 */}
           <div className="lg:w-1/4 space-y-3">
@@ -323,7 +310,7 @@ function Wechat() {
                   : 'bg-blue-500 text-white hover:bg-blue-600'
               }`}
             >
-              官方公众号
+              鲁大现代农业高质量发展研究基地
             </button>
             <button
               onClick={handleGoBack}
@@ -342,55 +329,73 @@ function Wechat() {
               碳基智能公众号
             </button>
           </div>
-          
+
           {/* 右侧详情区域 */}
-          <div className="lg:w-3/4 glass-card p-8 min-h-[400px]">
-            {activeTab === 'home' ? (
-              <div className="text-center text-gray-500">
-                <p>点击"官方公众号"或"碳基智能公众号"查看相关内容</p>
+          <div className="lg:w-3/4 glass-card p-6 md:p-8 min-h-[400px]">
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p className="mb-1 text-xs font-semibold tracking-[0.3em] text-blue-600">OFFICIAL ACCOUNT</p>
+                <h2 className="mb-0 text-xl font-semibold text-gray-800">鲁大现代农业高质量发展研究基地</h2>
               </div>
-            ) : loading ? (
-              <div className="text-center text-gray-500">
-                <svg className="animate-spin h-8 w-8 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                <p>加载中...</p>
-              </div>
-            ) : error ? (
-              <div className="text-center text-red-500">
-                <p>加载失败: {error}</p>
-              </div>
-            ) : articles.length === 0 ? (
-              <div className="text-center text-gray-500">
-                <p>暂无文章内容</p>
+              <span className="rounded-full bg-blue-600 px-3 py-1 text-xs font-medium text-white">
+                {activeTab === 'official' ? `${officialArticles.length} 篇文章` : '内容整理中'}
+              </span>
+            </div>
+
+            {activeTab !== 'official' ? (
+              <div className="rounded-xl border border-dashed border-blue-200 bg-white/50 p-10 text-center">
+                <p className="mb-1 font-medium text-gray-700">碳基智能公众号内容整理中</p>
+                <p className="mb-0 text-sm text-gray-500">敬请期待后续更新。</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {articles.map((article) => (
-                  <div 
-                    key={article.id} 
-                    className="glass-card p-4 cursor-pointer"
-                    onClick={() => handleArticleClick(article)}
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                {articles.map((article, index) => (
+                  <article
+                    key={article.id}
+                    className="group glass-card relative overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-blue-500/15"
                   >
-                    {article.image_url && (
-                      <img 
-                        src={article.image_url} 
-                        alt={article.title} 
-                        className="w-full h-40 object-contain bg-gray-100 rounded-lg mb-4"
-                      />
-                    )}
-                    <h3 className="text-lg font-medium text-gray-800 mb-2">{article.title}</h3>
-                    {article.summary && (
-                      <p className="text-gray-600 text-sm mb-4 line-clamp-2">{article.summary}</p>
-                    )}
-                    <span className="text-blue-600 text-sm flex items-center gap-1">
-                      查看详情
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
+                    <span className="absolute left-3 top-3 z-10 max-w-[calc(100%-4rem)] truncate rounded-full bg-black/45 px-2.5 py-0.5 text-[10px] text-white backdrop-blur-sm">
+                      鲁大现代农业高质量发展研究基地
                     </span>
-                  </div>
+                    <span className="absolute right-3 top-3 z-10 rounded-full bg-white/90 px-2 py-0.5 text-[10px] font-semibold text-blue-700">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+
+                    {article.thumb ? (
+                      <div className="relative h-44 overflow-hidden bg-gray-100">
+                        <img
+                          src={wechatCover(article.thumb)}
+                          alt={article.title}
+                          loading="lazy"
+                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/55 via-transparent to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
+                      </div>
+                    ) : (
+                      <div className="relative flex h-44 items-center justify-center overflow-hidden border-b border-dashed border-blue-200 bg-gradient-to-br from-blue-500/10 to-emerald-500/10">
+                        <div className="text-center">
+                          <p className="mb-1 text-2xl font-bold text-blue-300/70">
+                            {String(index + 1).padStart(2, '0')}
+                          </p>
+                          <p className="mb-0 text-xs text-gray-500">文章配图待补充</p>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="relative p-5">
+                      <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                      <h3
+                        className={`mb-2 text-base font-semibold leading-snug transition-colors duration-300 group-hover:text-blue-700 ${
+                          article.title ? 'text-gray-800' : 'text-gray-400'
+                        }`}
+                      >
+                        {article.title || '待补充文章标题'}
+                      </h3>
+                      <p className="mb-0 text-xs text-gray-500">
+                        {article.title ? '鲁大现代农业高质量发展研究基地' : '标题与正文稍后补充'}
+                      </p>
+                    </div>
+                  </article>
                 ))}
               </div>
             )}
@@ -1507,6 +1512,7 @@ function AppContent() {
             <Route path="/eco-environment-monitoring" element={<EcologicalMonitoring />} />
             <Route path="/organizational-structure" element={<OrganizationStructure />} />
             <Route path="/legal" element={<LegalStatement />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/data-publishing" element={<DataPublishing />} />
             <Route path="/data-publishing/:id" element={<DatasetDetail />} />
             <Route path="/data-search" element={<DataSearch />} />

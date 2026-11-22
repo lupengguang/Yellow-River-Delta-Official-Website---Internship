@@ -53,7 +53,7 @@ function Footer() {
             </div>
             <div className="flex space-x-4">
               <Link to="/legal" className="text-gray-400 hover:text-white text-sm transition-colors duration-300">法律声明</Link>
-              <Link to="/legal#privacy" className="text-gray-400 hover:text-white text-sm transition-colors duration-300">隐私政策</Link>
+              <Link to="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors duration-300">隐私政策</Link>
               <Link to="/" className="text-gray-400 hover:text-white text-sm transition-colors duration-300">网站地图</Link>
             </div>
           </div>
