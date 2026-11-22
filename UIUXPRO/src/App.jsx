@@ -22,6 +22,9 @@ import LegalStatement from './pages/LegalStatement';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import WechatEvent2026 from './pages/WechatEvent2026';
 import WechatEgu2027 from './pages/WechatEgu2027';
+import WechatHorticulture from './pages/WechatHorticulture';
+import WechatIsotopeForum from './pages/WechatIsotopeForum';
+import WechatQingyangStation from './pages/WechatQingyangStation';
 import DataPublishing from './pages/DataPublishing';
 import DatasetDetail from './pages/DatasetDetail';
 import DataSearch from './pages/DataSearch';
@@ -280,17 +283,20 @@ const officialArticles = [
   {
     id: 'official-3',
     title: '鲁东大学赵英团队在园艺领域顶级期刊 Horticulture Research 发表研究论文',
-    thumb: '鲁东大学赵英团队在园艺领域顶级期刊Horticulture Research发表研究论文.png'
+    thumb: '鲁东大学赵英团队在园艺领域顶级期刊Horticulture Research发表研究论文.png',
+    link: '/other-results/wechat/official-3'
   },
   {
     id: 'official-4',
     title: '第六届中国同位素水文学论坛在南京市成功举办',
-    thumb: '第六届中国同位素水文学论坛在南京市成功举办.png'
+    thumb: '第六届中国同位素水文学论坛在南京市成功举办.png',
+    link: '/other-results/wechat/official-4'
   },
   {
     id: 'official-5',
     title: '国内外知名专家到访庆阳草地农业国家站',
-    thumb: '国内外知名专家到访庆阳草地农业国家站.png'
+    thumb: '国内外知名专家到访庆阳草地农业国家站.png',
+    link: '/other-results/wechat/official-5'
   },
   {
     id: 'official-6',
@@ -1576,6 +1582,9 @@ function AppContent() {
             <Route path="/other-results/wechat/detail" element={<WechatArticleDetail />} />
             <Route path="/other-results/wechat/official-1" element={<WechatEvent2026 />} />
             <Route path="/other-results/wechat/official-2" element={<WechatEgu2027 />} />
+            <Route path="/other-results/wechat/official-3" element={<WechatHorticulture />} />
+            <Route path="/other-results/wechat/official-4" element={<WechatIsotopeForum />} />
+            <Route path="/other-results/wechat/official-5" element={<WechatQingyangStation />} />
             <Route path="/other-results/projects" element={<Projects />} />
             <Route path="/other-results/literature" element={<Literature />} />
             <Route path="/help-center" element={<HelpCenter />} />
