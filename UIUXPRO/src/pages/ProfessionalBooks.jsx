@@ -21,21 +21,24 @@ const books = [
     category: '生态系统',
     image: '乔治等生态环境空间信息与数字技术综合实验教程。.png',
     author: '乔治 等',
-    price: 90
+    price: 90,
+    link: '/professional-books/eco-environment-tutorial'
   },
   {
     title: 'Python与开源GIS：数据处理、空间分析与地图制图',
     category: '软件操作',
     image: '卜坤Python与开源GIS一数据处.png',
     author: '卜坤',
-    price: 108
+    price: 108,
+    link: '/professional-books/python-open-source-gis'
   },
   {
     title: '中国国家地理2013年典藏版',
     category: '期刊杂志',
     image: '中国国家地理中国国家地理2013年典藏版.png',
     author: '',
-    price: 200
+    price: 200,
+    link: '/professional-books/cng-2013'
   },
   {
     title: '中国国家地理2015年典藏版',

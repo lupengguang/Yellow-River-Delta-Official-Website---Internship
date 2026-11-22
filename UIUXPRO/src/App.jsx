@@ -23,6 +23,9 @@ import DataPublishing from './pages/DataPublishing';
 import DataSearch from './pages/DataSearch';
 import ProfessionalBooks from './pages/ProfessionalBooks';
 import SanjiangyuanAtlas from './pages/SanjiangyuanAtlas';
+import EcoEnvironmentTutorial from './pages/EcoEnvironmentTutorial';
+import PythonOpenSourceGis from './pages/PythonOpenSourceGis';
+import Cng2013 from './pages/Cng2013';
 
 // 主页组件
 function Home() {
@@ -1208,6 +1211,9 @@ function AppContent() {
             <Route path="/data-search" element={<DataSearch />} />
             <Route path="/professional-books" element={<ProfessionalBooks />} />
             <Route path="/professional-books/sanjiangyuan-atlas" element={<SanjiangyuanAtlas />} />
+            <Route path="/professional-books/eco-environment-tutorial" element={<EcoEnvironmentTutorial />} />
+            <Route path="/professional-books/python-open-source-gis" element={<PythonOpenSourceGis />} />
+            <Route path="/professional-books/cng-2013" element={<Cng2013 />} />
           </Routes>
         </div>
       </main>
