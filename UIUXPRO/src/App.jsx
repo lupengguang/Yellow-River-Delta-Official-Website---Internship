@@ -500,78 +500,209 @@ function Projects() {
   );
 }
 
+const literatureCover = (file) => `${import.meta.env.BASE_URL}images/${file}`;
+
+// 相关文献条目：期刊论文与公众号文章，按题目规范化去重后只保留一条
+const literatureRecords = [
+  {
+    type: '期刊论文',
+    title: 'An incorrect wetness-based correction method for deuterium offset',
+    journal: 'Proceedings of the National Academy of Sciences (PNAS)',
+    volume: '118(15)',
+    doi: '10.1073/pnas.2026641118',
+    link: 'https://www.pnas.org/doi/10.1073/pnas.2026641118',
+    thumb: '黄河三角洲平均土壤湿度.png'
+  },
+  {
+    type: '期刊论文',
+    title: 'Soil Acidification Under Long-Term N Addition Decreases the Diversity of Soil Bacteria and Fungi and Changes Their Community Composition in a Semiarid Grassland',
+    journal: 'Microbial Ecology',
+    volume: '1-11（在线优先出版格式）',
+    doi: '10.1007/s00248-021-01836-8',
+    link: 'https://link.springer.com/article/10.1007/s00248-021-01836-8',
+    thumb: '土壤质地(砂土).png'
+  },
+  {
+    type: '期刊论文',
+    title: 'Effect of Straw and Wood Ash on Soil Carbon Sequestration and Bacterial Community in a Calcareous Soil',
+    journal: 'Frontiers in Microbiology',
+    volume: '13: 926506 (1-12)',
+    doi: '10.3389/fmicb.2022.926506',
+    link: 'https://www.frontiersin.org/articles/10.3389/fmicb.2022.926506/full',
+    thumb: '黄河三角洲土壤保持.png'
+  },
+  {
+    type: '期刊论文',
+    title: 'Assessing soil water balance to optimize irrigation schedules of flood-irrigated maize fields with different cultivation histories in the arid region',
+    journal: 'Agricultural Water Management',
+    volume: '265: 107543',
+    doi: '10.1016/j.agwat.2022.107543',
+    link: 'https://www.sciencedirect.com/science/article/pii/S0378377422000907',
+    thumb: '黄河三角洲MODIS地表蒸散发.png'
+  },
+  {
+    type: '期刊论文',
+    title: 'Upstream 2000 ha is the boundary of the stream water nitrogen and phosphorus saturation concentration threshold in the subtropical agricultural catchment',
+    journal: 'Catena',
+    volume: '211: 105960',
+    doi: '10.1016/j.catena.2021.105960',
+    link: 'https://www.sciencedirect.com/science/article/pii/S0341816221005960',
+    thumb: '黄河三角洲水系分布图.png'
+  },
+  {
+    type: '期刊论文',
+    title: 'Effect of saline land reclamation by constructing the "Raised Field-Shallow Trench" pattern on agroecosystems in Yellow River Delta',
+    journal: 'Agricultural Water Management',
+    volume: '261: 107345',
+    doi: '10.1016/j.agwat.2021.107345',
+    link: 'https://www.sciencedirect.com/science/article/pii/S0378377421006223',
+    thumb: '黄河三角洲土地利用数据.png'
+  },
+  {
+    type: '公众号文章',
+    title: '鲁东大学国家高等学校学科创新引智基地（“111计划”）海外专家 Daniele Penna 在国际顶级期刊 Nature Water 发表最新研究成果',
+    account: '鲁大现代农业高质量发展研究基地',
+    thumb: '黄河三角洲年降水量.png'
+  },
+  {
+    type: '公众号文章',
+    title: '鲁东大学赵英教授团队在 Nature 子刊发表重要研究成果',
+    account: '鲁大现代农业高质量发展研究基地',
+    thumb: '黄河三角洲NPP.png'
+  },
+  {
+    type: '公众号文章',
+    title: '温州大学甘延太院士团队发表研究成果，为全球塑料条约的谈判提供了关于农膜“生产力—环境”权衡与转型路径的关键科学支撑',
+    account: '鲁大现代农业高质量发展研究基地',
+    thumb: '黄河三角洲土地利用数据.png'
+  },
+  {
+    type: '公众号文章',
+    title: '鲁东大学在《Science》发声：重新理解气候变化与放牧作用',
+    account: '鲁大现代农业高质量发展研究基地',
+    thumb: '黄河三角洲植被类型数据.png'
+  },
+  {
+    type: '公众号文章',
+    title: '鲁东大学赵英教授团队在《Hydrological Processes》发表论文：低温真空抽提法导致氢同位素偏移',
+    account: '鲁大现代农业高质量发展研究基地',
+    thumb: '黄河三角洲水系分布图.png'
+  }
+];
+
+const normalizeLiteratureTitle = (title) => title.replace(/[\s　]+/g, '').toLowerCase();
+const seenLiteratureTitles = new Set();
+
+const literatureList = literatureRecords.filter((item) => {
+  const key = normalizeLiteratureTitle(item.title);
+  if (seenLiteratureTitles.has(key)) return false;
+  seenLiteratureTitles.add(key);
+  return true;
+});
+
 function Literature() {
-  const [literatures, setLiteratures] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
-
-  React.useEffect(() => {
-    const fetchLiteratures = async () => {
-      try {
-        const response = await fetch('http://localhost:8000/api/literature/literatures');
-        const data = await response.json();
-        
-        if (data.code === 200) {
-          setLiteratures(data.data);
-        } else {
-          setError(data.message || '获取文献失败');
-        }
-      } catch (err) {
-        setError('网络错误，无法获取文献数据');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchLiteratures();
-  }, []);
-
   return (
-    <div className="py-8 bg-blue-50 min-h-screen">
+    <div className="py-10 bg-blue-50 min-h-screen">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">相关文献</h1>
-        
-        <div className="glass-card p-8">
-          {loading ? (
-            <div className="text-center py-8">
-              <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600 mx-auto"></div>
-              <p className="mt-4 text-gray-600">加载中...</p>
-            </div>
-          ) : error ? (
-            <div className="text-center py-8 text-red-600">
-              <p>{error}</p>
-            </div>
-          ) : literatures.length === 0 ? (
-            <div className="text-center py-8 text-gray-600">
-              <p>暂无文献</p>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {literatures.map((item) => (
-                <div 
-                  key={item.id} 
-                  className="glass-card p-4"
-                >
-                  <h3 className="text-lg font-medium text-gray-800 mb-2">{item.title}</h3>
-                  {item.journal && <p className="text-gray-600 text-sm">期刊: {item.journal}</p>}
-                  {item.volume && <p className="text-gray-600 text-sm">卷期: {item.volume}</p>}
-                  {item.doi && <p className="text-gray-600 text-sm">DOI: {item.doi}</p>}
-                  {item.authors && <p className="text-gray-600 text-sm">作者: {item.authors}</p>}
-                  {item.publish_time && <p className="text-gray-600 text-sm">发表时间: {item.publish_time}</p>}
-                  {item.official_link && (
-                    <p className="text-sm mt-1">
-                      <span className="text-gray-600">官方链接:</span>
-                      <a href={item.official_link} target="_blank" rel="noopener noreferrer" className="text-red-500 hover:text-red-700 ml-1 break-all">
-                        {item.official_link}
-                      </a>
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
+        <Link
+          to="/other-results"
+          className="group mb-6 inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/60 px-4 py-2 text-sm text-gray-700 backdrop-blur-md transition-all duration-300 hover:-translate-x-1 hover:border-blue-200 hover:text-blue-700 hover:shadow-lg hover:shadow-blue-500/10"
+        >
+          <span className="transition-transform duration-300 group-hover:-translate-x-1">←</span>
+          返回其他成果
+        </Link>
+        <div className="mb-8">
+          <p className="mb-2 text-xs font-semibold tracking-[0.3em] text-blue-600">LITERATURE</p>
+          <h1 className="text-3xl font-bold text-gray-800 mb-3">相关文献</h1>
+          <p className="max-w-3xl text-gray-600">
+            汇集与黄河三角洲资源环境科学研究相关的学术论文、公众号研究成果等文献资料，方便用户查阅和引用。
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <span className="rounded-full bg-blue-600 px-3 py-1 text-xs font-medium text-white">{literatureList.length} 篇文献</span>
+            <span className="rounded-full bg-white/70 px-3 py-1 text-xs text-blue-700">期刊论文与公众号文章</span>
+            <span className="rounded-full bg-white/70 px-3 py-1 text-xs text-blue-700">点击卡片查阅原文</span>
+          </div>
         </div>
-        
+
+        <div className="space-y-5">
+          {literatureList.map((item) => {
+            const body = (
+              <>
+                <div className="relative w-full shrink-0 overflow-hidden bg-gradient-to-br from-blue-500/15 to-emerald-500/15 sm:w-48 md:w-56">
+                  <img
+                    src={literatureCover(item.thumb)}
+                    alt={item.title}
+                    loading="lazy"
+                    className="h-40 w-full object-cover transition-transform duration-700 group-hover:scale-110 sm:h-full"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/10 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95" />
+                  <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-0.5 text-[10px] font-semibold text-blue-700 shadow-sm">
+                    {item.type}
+                  </span>
+                  <span className="absolute bottom-3 left-3 right-3 line-clamp-2 text-[11px] leading-snug text-white/90">
+                    {item.journal || item.account}
+                  </span>
+                </div>
+
+                <div className="relative min-w-0 flex-1 p-5 md:p-6">
+                  <span className="absolute bottom-6 left-0 top-6 w-0.5 rounded-full bg-blue-500/0 transition-all duration-500 group-hover:bg-blue-500" />
+                  <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+
+                  <h3 className="mb-2 pr-2 text-base font-semibold leading-snug text-gray-800 transition-colors duration-300 group-hover:text-blue-700 md:text-lg">
+                    {item.title}
+                  </h3>
+
+                  <div className="space-y-1 text-xs text-gray-600 md:text-sm">
+                    {item.journal && (
+                      <p className="mb-0"><span className="text-gray-500">期刊：</span>{item.journal}</p>
+                    )}
+                    {item.volume && (
+                      <p className="mb-0"><span className="text-gray-500">卷期：</span>{item.volume}</p>
+                    )}
+                    {item.doi && (
+                      <p className="mb-0"><span className="text-gray-500">DOI：</span>{item.doi}</p>
+                    )}
+                    {item.account && (
+                      <p className="mb-0"><span className="text-gray-500">公众号：</span>{item.account}</p>
+                    )}
+                  </div>
+
+                  <div className="mt-4 flex items-center justify-between gap-3">
+                    {item.link ? (
+                      <span className="text-xs font-medium text-blue-600">
+                        查看原文
+                        <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+                      </span>
+                    ) : (
+                      <span className="text-xs text-gray-400">公众号文章</span>
+                    )}
+                    <span className="h-px flex-1 bg-gradient-to-r from-blue-200/70 to-transparent transition-colors duration-500 group-hover:from-blue-400/70" />
+                  </div>
+                </div>
+              </>
+            );
+
+            const cardClass =
+              'group glass-card relative flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-blue-500/15 sm:flex-row';
+
+            return item.link ? (
+              <a
+                key={item.title}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cardClass}
+              >
+                {body}
+              </a>
+            ) : (
+              <article key={item.title} className={cardClass}>
+                {body}
+              </article>
+            );
+          })}
+        </div>
+
         {/* 页脚信息 */}
         <div className="text-center text-gray-600 text-sm mt-8">
           <p>版权所有 © 黄河三角洲资源环境科学数据平台</p>
