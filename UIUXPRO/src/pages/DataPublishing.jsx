@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { PageBanner } from './topicPageKit';
 
 const img = (file) => `${import.meta.env.BASE_URL}images/${file}`;
@@ -68,12 +69,54 @@ const records = [
   { title: '中国东北地区 30m 逐年 NDVI 最大值数据集', keywords: '中国 东北地区 NDVI 30m', author: '徐新良', thumb: '黄河三角洲NDVI.png', category: '植被' },
   { title: '中国东北地区年度植被指数（NDVI）空间分布数据集', keywords: '中国 东北地区 植被指数 年度', author: '徐新良', category: '植被' },
   { title: '中国东北地区月度植被指数（NDVI）空间分布数据集', keywords: '中国 东北地区 植被指数 月度', author: '徐新良', category: '植被' },
-  { title: '中国东北地区季度植被指数（NDVI）空间分布数据集', keywords: '中国 东北地区 植被指数 季度', author: '徐新良', category: '植被' }
+  { title: '中国东北地区季度植被指数（NDVI）空间分布数据集', keywords: '中国 东北地区 植被指数 季度', author: '徐新良', category: '植被' },
+  { title: '东北地区气象要素年度空间插值数据集', keywords: '东北地区 气象要素 年度 空间插值', author: '徐新良', thumb: '黄河三角洲年均气温.png', category: '气象' },
+  { title: '东北地区10m逐年NDVI最大值数据集', keywords: '东北地区 NDVI 10m 年度', author: '徐新良', thumb: '黄河三角洲NDVI.png', category: '植被' },
+  { title: '东北地区地表温度LST年度1KM数据集', keywords: '东北地区 地表温度 LST 年度', author: '徐新良', category: '气象' },
+  { title: '东北地区地表温度LST月度1KM数据集', keywords: '东北地区 地表温度 LST 月度', author: '徐新良', category: '气象' },
+  { title: '东北地区地表温度LST季度1KM数据集', keywords: '东北地区 地表温度 LST 季度', author: '徐新良', category: '气象' },
+  { title: '东北地区LST 6天1KM数据集', keywords: '东北地区 地表温度 LST 6天', author: '徐新良', category: '气象' },
+  { title: '东北地区多时期生态系统类型空间分布数据', keywords: '东北地区 多时期 生态系统类型 空间分布', author: '徐新良', category: '生态系统' },
+  { title: '中国多时期生态系统类型空间分布数据', keywords: '中国 多时期 生态系统类型 空间分布', author: '徐新良', category: '生态系统' },
+  { title: '东北地区1980年代100万土地利用数据', keywords: '东北地区 1980年代 100万 土地利用', author: '徐新良', thumb: '黄河三角洲土地利用数据.png', category: '土地利用' },
+  { title: '中国1980年代100万土地利用数据', keywords: '中国 1980年代 100万 土地利用', author: '徐新良', thumb: '黄河三角洲土地利用数据.png', category: '土地利用' },
+  { title: '东北地区多时期土地利用遥感监测数据集', keywords: '东北地区 多时期 土地利用 遥感监测', author: '徐新良', category: '土地利用' },
+  { title: '东北地区气象要素逐月站点观测数据集', keywords: '东北地区 气象要素 逐月 站点观测', author: '徐新良', category: '气象' },
+  { title: '东北地区气象要素逐日站点观测数据集', keywords: '东北地区 气象要素 逐日 站点观测', author: '徐新良', category: '气象' },
+  { title: '东北地区多年度县区行政区划边界数据', keywords: '东北地区 县区 行政区划 边界', author: '徐新良', thumb: '黄河三角洲行政区划边界.png', category: '行政区划' },
+  { title: '东北地区多年度地市行政区划边界数据', keywords: '东北地区 地市 行政区划 边界', author: '徐新良', category: '行政区划' },
+  { title: '东北地区多年度省级行政区划边界数据', keywords: '东北地区 省级 行政区划 边界', author: '徐新良', category: '行政区划' },
+  { title: '2015年东北地区乡镇行政区划数据', keywords: '2015 东北地区 乡镇 行政区划', author: '徐新良', category: '行政区划' },
+  { title: '多时期乡镇行政区划边界数据', keywords: '多时期 乡镇 行政区划 边界', author: '徐新良', category: '行政区划' },
+  { title: '东北地区夜间灯光年度数据集', keywords: '东北地区 夜间灯光 年度', author: '徐新良', thumb: '黄河三角洲夜间灯光数据.png', category: '夜间灯光' },
+  { title: '东北地区夜间灯光月度数据集', keywords: '东北地区 夜间灯光 月度', author: '徐新良', category: '夜间灯光' },
+  { title: '东北地区逐小时人口密度空间分布数据', keywords: '东北地区 人口密度 逐小时 空间分布', author: '徐新良', category: '人口' },
+  { title: '东北地区1981-2012年逐年8km植被指数数据集', keywords: '东北地区 植被指数 1981-2012 8km', author: '徐新良', thumb: '黄河三角洲植被类型数据.png', category: '植被' },
+  { title: '东北地区1981-2012年逐天1km植被指数数据集', keywords: '东北地区 植被指数 1981-2012 1km', author: '徐新良', category: '植被' },
+  { title: '中国50万草地资源图', keywords: '中国 草地资源 50万', author: '徐新良', category: '植被' },
+  { title: '青海省100万植被图数据', keywords: '青海 植被图 100万', author: '徐新良', category: '植被' },
+  { title: '港澳人口迁徙数据', keywords: '港澳 人口迁徙', author: '徐新良', category: '人口' },
+  { title: '全国逐小时人口密度空间分布数据', keywords: '全国 人口密度 逐小时 空间分布', author: '徐新良', category: '人口' },
+  { title: '人口迁徙规模数据', keywords: '人口迁徙 规模', author: '徐新良', category: '人口' },
+  { title: '人口迁徙比例数据', keywords: '人口迁徙 比例', author: '徐新良', category: '人口' },
+  { title: '全球夜间灯光年度数据集', keywords: '全球 夜间灯光 年度', author: '徐新良', category: '夜间灯光' },
+  { title: '全球夜间灯光月度数据集', keywords: '全球 夜间灯光 月度', author: '徐新良', category: '夜间灯光' },
+  { title: '中国夜间灯光年度数据集', keywords: '中国 夜间灯光 年度', author: '徐新良', category: '夜间灯光' },
+  { title: '中国夜间灯光月度数据集', keywords: '中国 夜间灯光 月度', author: '徐新良', category: '夜间灯光' },
+  { title: '中国地表温度LST年度1KM数据集', keywords: '中国 地表温度 LST 年度', author: '徐新良', category: '气象' },
+  { title: '中国地表温度LST季度1KM数据集', keywords: '中国 地表温度 LST 季度', author: '徐新良', category: '气象' },
+  { title: '中国地表温度LST月度1KM数据集', keywords: '中国 地表温度 LST 月度', author: '徐新良', category: '气象' },
+  { title: '中国10m逐年NDVI最大值数据集', keywords: '中国 NDVI 10m 年度', author: '徐新良', thumb: '黄河三角洲NDVI.png', category: '植被' },
+  { title: '2020-2025年哨兵10米分辨率多光谱遥感影像', keywords: '2020-2025 哨兵 10米 多光谱 遥感影像', author: '徐新良', thumb: 'Landsat中分辨率遥感影像.png', category: '遥感' },
+  { title: '东北黑土区土系土志土壤属性数据', keywords: '东北黑土区 土系 土志 土壤属性', author: '徐新良', thumb: '土壤质地(砂土).png', category: '土壤' },
+  { title: '中国土系土志土壤属性数据（2010年代）', keywords: '中国 土系 土志 土壤属性 2010年代', author: '徐新良', category: '土壤' }
 ];
+
+export const datasetRecords = records.map((record, index) => ({ ...record, id: index + 1 }));
 
 const categoryOptions = [
   '全部',
-  ...Array.from(new Set(records.map((record) => record.category)))
+  ...Array.from(new Set(datasetRecords.map((record) => record.category)))
 ];
 
 const pageSize = 12;
@@ -104,7 +147,7 @@ function DataPublishing() {
 
   const filtered = useMemo(() => {
     const lower = (value) => value.toLowerCase();
-    return records.filter((record) => {
+    return datasetRecords.filter((record) => {
       if (applied.category !== '全部' && record.category !== applied.category) return false;
       if (applied.keyword && !lower(record.keywords).includes(lower(applied.keyword))) return false;
       if (applied.title && !lower(record.title).includes(lower(applied.title))) return false;
@@ -124,7 +167,7 @@ function DataPublishing() {
         kicker="DATA PUBLISHING"
         title="数据出版"
         description="展示平台已出版与可检索的数据资源，支持按分类、关键词、标题、摘要及数据库格式组合检索。"
-        chips={[`${records.length} 项数据资源`, '支持组合检索', '持续更新']}
+        chips={[`${datasetRecords.length} 项数据资源`, '支持组合检索', '持续更新']}
       />
 
       {/* 关键词搜索 */}
@@ -227,9 +270,10 @@ function DataPublishing() {
           ) : (
             <ul className="divide-y divide-white/50">
               {visible.map((record) => (
-                <li
-                  key={`${record.title}-${record.author}`}
-                  className="group flex gap-4 px-5 py-4 transition-colors duration-300 hover:bg-white/60"
+                <Link
+                  key={record.id}
+                  to={`/data-publishing/${record.id}`}
+                  className="group flex items-center gap-4 px-5 py-4 transition-all duration-300 hover:bg-white/70 hover:pl-6"
                 >
                   <div className="flex-shrink-0 w-24 h-16 md:w-32 md:h-20 rounded-lg overflow-hidden border border-white/70 bg-white/60">
                     {record.thumb ? (
@@ -259,7 +303,10 @@ function DataPublishing() {
                       {record.author || '待补充'}
                     </p>
                   </div>
-                </li>
+                  <span className="flex-shrink-0 text-emerald-600 transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </Link>
               ))}
             </ul>
           )}

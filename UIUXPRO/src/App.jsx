@@ -20,6 +20,7 @@ import EcologicalMonitoring from './pages/EcologicalMonitoring';
 import OrganizationStructure from './pages/OrganizationStructure';
 import LegalStatement from './pages/LegalStatement';
 import DataPublishing from './pages/DataPublishing';
+import DatasetDetail from './pages/DatasetDetail';
 import DataSearch from './pages/DataSearch';
 import ProfessionalBooks from './pages/ProfessionalBooks';
 import SanjiangyuanAtlas from './pages/SanjiangyuanAtlas';
@@ -1221,6 +1222,7 @@ function AppContent() {
             <Route path="/organizational-structure" element={<OrganizationStructure />} />
             <Route path="/legal" element={<LegalStatement />} />
             <Route path="/data-publishing" element={<DataPublishing />} />
+            <Route path="/data-publishing/:id" element={<DatasetDetail />} />
             <Route path="/data-search" element={<DataSearch />} />
             <Route path="/professional-books" element={<ProfessionalBooks />} />
             <Route path="/professional-books/sanjiangyuan-atlas" element={<SanjiangyuanAtlas />} />
