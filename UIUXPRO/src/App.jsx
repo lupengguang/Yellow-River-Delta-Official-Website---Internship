@@ -36,6 +36,9 @@ import BookEnergyPlantPotential from './pages/BookEnergyPlantPotential';
 import BookGlobalEcoReport2014 from './pages/BookGlobalEcoReport2014';
 import BookGlobalEcoReport2015 from './pages/BookGlobalEcoReport2015';
 import BookLandUseAtlas from './pages/BookLandUseAtlas';
+import BookLandUseMonitoring from './pages/BookLandUseMonitoring';
+import BookMongoliaRussiaMonitoring from './pages/BookMongoliaRussiaMonitoring';
+import BookPortCityMonitoring from './pages/BookPortCityMonitoring';
 
 // 主页组件
 function Home() {
@@ -1234,6 +1237,9 @@ function AppContent() {
             <Route path="/professional-books/global-eco-report-2014" element={<BookGlobalEcoReport2014 />} />
             <Route path="/professional-books/global-eco-report-2015" element={<BookGlobalEcoReport2015 />} />
             <Route path="/professional-books/land-use-atlas" element={<BookLandUseAtlas />} />
+            <Route path="/professional-books/land-use-monitoring" element={<BookLandUseMonitoring />} />
+            <Route path="/professional-books/mongolia-russia-monitoring" element={<BookMongoliaRussiaMonitoring />} />
+            <Route path="/professional-books/port-city-monitoring" element={<BookPortCityMonitoring />} />
           </Routes>
         </div>
       </main>

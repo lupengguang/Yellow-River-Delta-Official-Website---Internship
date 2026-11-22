@@ -85,21 +85,24 @@ const books = [
     category: '土地利用相关',
     image: '张增祥 赵晓丽王潇..中国土地利用遥感监测.png',
     author: '张增祥、赵晓丽、王潇 等',
-    price: 200
+    price: 200,
+    link: '/professional-books/land-use-monitoring'
   },
   {
     title: '“一带一路”蒙俄区生态环境遥感监测',
     category: '一带一路',
     image: "徐新良,李静,王勇....'一带一路”蒙俄区生态环境逼感监测.png",
     author: '徐新良、李静、王勇 等',
-    price: 70
+    price: 70,
+    link: '/professional-books/mongolia-russia-monitoring'
   },
   {
     title: '“一带一路”港口城市生态环境遥感监测',
     category: '一带一路',
     image: '侯西勇宋洋徐新良......“一带一路”港口城市生态环境遥感监测.png',
     author: '侯西勇、宋洋、徐新良 等',
-    price: 70
+    price: 70,
+    link: '/professional-books/port-city-monitoring'
   },
   {
     title: '亚非欧部分国家和地区脆弱性评价图集',
@@ -115,7 +118,7 @@ const books = [
     category: '遥感监测',
     image: '庄大方 江东 刘磊能源植物发展潜力遥感信息获取与评价.png',
     author: '庄大方、江东、刘磊',
-    price: null,
+    price: 35,
     link: '/professional-books/energy-plant-potential'
   },
   {
@@ -123,7 +126,7 @@ const books = [
     category: '遥感监测',
     image: '廖小罕施建成等全球生态环境遥感监测2014年度报告.png',
     author: '廖小罕、施建成 等',
-    price: null,
+    price: 258,
     link: '/professional-books/global-eco-report-2014'
   },
   {
@@ -131,7 +134,7 @@ const books = [
     category: '遥感监测',
     image: '李加洪 施建成等全球生态环境遥感监测2015年年度报告.png',
     author: '李加洪、施建成 等',
-    price: null,
+    price: 238,
     link: '/professional-books/global-eco-report-2015'
   },
   {
@@ -139,7 +142,7 @@ const books = [
     category: '遥感监测',
     image: '张增祥等中国土地利用遥感监测图集.png',
     author: '张增祥 等',
-    price: null,
+    price: 120,
     link: '/professional-books/land-use-atlas'
   }
 ];
@@ -175,7 +178,7 @@ function BookCard({ book }) {
         </p>
         {book.link && (
           <p className="mt-2 mb-0 flex items-center gap-1 text-xs text-emerald-600">
-            查看图集详情
+            查看详情
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </p>
         )}
