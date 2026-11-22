@@ -7,11 +7,19 @@ const categories = ['生态系统', '软件操作', '期刊杂志', '土地利�
 
 const books = [
   {
+    title: '青海三江源生态系统遥感监测图集',
+    category: '生态系统',
+    image: 'sanjiangyuan-eco-rs.jpg',
+    author: '徐新良、肖艳伟、刘影 等',
+    price: 80,
+    fit: 'contain'
+  },
+  {
     title: '生态环境空间信息与数字技术综合实验教程',
     category: '生态系统',
     image: 'eco-space-tech.jpg',
-    author: '',
-    price: null
+    author: '乔治 等',
+    price: 90
   },
   {
     title: 'Python与开源GIS：数据处理、空间分析与地图制图',
@@ -36,7 +44,7 @@ const books = [
   },
   {
     title: '城市热环境：格局·机制与模拟',
-    category: '遥感监测',
+    category: '土地利用相关',
     image: 'urban-heat.jpg',
     author: '徐新良、乔治、田光进',
     price: 100
@@ -45,8 +53,8 @@ const books = [
     title: '土地利用/覆被变化时空分析',
     category: '土地利用相关',
     image: 'land-use-dark.jpg',
-    author: '',
-    price: null
+    author: '徐新良',
+    price: 100
   },
   {
     title: '城市土地利用时空信息数据重建、分析与模拟',
@@ -57,7 +65,7 @@ const books = [
   },
   {
     title: '对比研究：农牧民对生态建设工程响应',
-    category: '生态系统',
+    category: '土地利用相关',
     image: 'farmers-response.jpg',
     author: '邵景安、徐新良',
     price: 50
@@ -77,11 +85,18 @@ const books = [
     price: 70
   },
   {
+    title: '“一带一路”港口城市生态环境遥感监测',
+    category: '一带一路',
+    image: 'belt-road-port.jpg',
+    author: '侯西勇、宋洋、徐新良 等',
+    price: 70
+  },
+  {
     title: '亚非欧部分国家和地区脆弱性评价图集',
-    category: '生态系统',
+    category: '一带一路',
     image: 'vulnerability-atlas.jpg',
-    author: '',
-    price: null
+    author: '徐新良',
+    price: 280
   },
   {
     title: '特色植物发展潜力遥感信息获取与评价',
@@ -106,7 +121,7 @@ const books = [
   },
   {
     title: '中国土地利用遥感监测图集',
-    category: '土地利用相关',
+    category: '遥感监测',
     image: 'land-use-atlas.jpg',
     author: '',
     price: null
@@ -241,7 +256,9 @@ function ProfessionalBooks() {
                         src={cover(book.image)}
                         alt={book.title}
                         loading="lazy"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className={`w-full h-full ${
+                          book.fit === 'contain' ? 'object-contain p-1 bg-white' : 'object-cover'
+                        } transition-transform duration-700 group-hover:scale-105`}
                       />
                       <span className="absolute left-2 top-2 rounded-full bg-black/45 px-2 py-0.5 text-[10px] text-white backdrop-blur-sm">
                         {book.category}
