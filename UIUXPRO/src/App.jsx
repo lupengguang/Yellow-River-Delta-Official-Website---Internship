@@ -28,6 +28,9 @@ import PythonOpenSourceGis from './pages/PythonOpenSourceGis';
 import Cng2013 from './pages/Cng2013';
 import Cng2015 from './pages/Cng2015';
 import UrbanHeatEnvironment from './pages/UrbanHeatEnvironment';
+import LuccSpatiotemporal from './pages/LuccSpatiotemporal';
+import UrbanLandUseReconstruction from './pages/UrbanLandUseReconstruction';
+import FarmersResponseComparison from './pages/FarmersResponseComparison';
 
 // 主页组件
 function Home() {
@@ -1218,6 +1221,9 @@ function AppContent() {
             <Route path="/professional-books/cng-2013" element={<Cng2013 />} />
             <Route path="/professional-books/cng-2015" element={<Cng2015 />} />
             <Route path="/professional-books/urban-heat-environment" element={<UrbanHeatEnvironment />} />
+            <Route path="/professional-books/lucc-spatiotemporal" element={<LuccSpatiotemporal />} />
+            <Route path="/professional-books/urban-land-use-reconstruction" element={<UrbanLandUseReconstruction />} />
+            <Route path="/professional-books/farmers-response-comparison" element={<FarmersResponseComparison />} />
           </Routes>
         </div>
       </main>

@@ -57,25 +57,28 @@ const books = [
     link: '/professional-books/urban-heat-environment'
   },
   {
-    title: '土地利用/覆被变化时空分析',
+    title: '土地利用覆被变化时空信息分析方法及应用',
     category: '土地利用相关',
     image: '徐新良等析方法及应用土地利用覆被变化时空信息分.png',
-    author: '徐新良',
-    price: 100
+    author: '徐新良、庞治国、于信芳',
+    price: 100,
+    link: '/professional-books/lucc-spatiotemporal'
   },
   {
-    title: '城市土地利用时空信息数据重建、分析与模拟',
+    title: '城市土地利用时空信息数字重建、分析与模拟',
     category: '土地利用相关',
     image: '匡文慧城市土地利用时空信息数据重建、分析与模拟.png',
     author: '匡文慧',
-    price: 60
+    price: 69,
+    link: '/professional-books/urban-land-use-reconstruction'
   },
   {
-    title: '对比研究：农牧民对生态建设工程响应',
+    title: '农牧民对生态建设工程响应与适应的对比研究：以江西山江湖和青海三江源区为例',
     category: '土地利用相关',
     image: '邵景安徐新良对比研究一农牧民对生态建设工程响应的以江.png',
     author: '邵景安、徐新良',
-    price: 50
+    price: 78,
+    link: '/professional-books/farmers-response-comparison'
   },
   {
     title: '中国土地利用遥感监测',
