@@ -21,6 +21,7 @@ import OrganizationStructure from './pages/OrganizationStructure';
 import LegalStatement from './pages/LegalStatement';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import WechatEvent2026 from './pages/WechatEvent2026';
+import WechatEgu2027 from './pages/WechatEgu2027';
 import DataPublishing from './pages/DataPublishing';
 import DatasetDetail from './pages/DatasetDetail';
 import DataSearch from './pages/DataSearch';
@@ -273,7 +274,8 @@ const officialArticles = [
   {
     id: 'official-2',
     title: 'EGU丨2027专题征稿 HS10.19 人类活动改变的临界带中的水资源可及性、储存与连通性：机制、阈值与功能结果',
-    thumb: 'EGU丨2027专题征稿 HS10.19 人类活动改变的临界带中的水资源可及性、储存与连通性：机制、阈值与功能结果.png'
+    thumb: 'EGU丨2027专题征稿 HS10.19 人类活动改变的临界带中的水资源可及性、储存与连通性：机制、阈值与功能结果.png',
+    link: '/other-results/wechat/official-2'
   },
   {
     id: 'official-3',
@@ -1573,6 +1575,7 @@ function AppContent() {
             <Route path="/other-results/wechat" element={<Wechat />} />
             <Route path="/other-results/wechat/detail" element={<WechatArticleDetail />} />
             <Route path="/other-results/wechat/official-1" element={<WechatEvent2026 />} />
+            <Route path="/other-results/wechat/official-2" element={<WechatEgu2027 />} />
             <Route path="/other-results/projects" element={<Projects />} />
             <Route path="/other-results/literature" element={<Literature />} />
             <Route path="/help-center" element={<HelpCenter />} />
