@@ -301,9 +301,38 @@ const officialArticles = [
   { id: 'official-8', title: '论文分享', thumb: '论文分享.png' }
 ];
 
+// 碳基智能公众号文章卡片：前 5 篇已定标题，其余 3 篇留空
+const carbonArticles = [
+  {
+    id: 'carbon-1',
+    title: '谷歌一夜连发两张牌：Gemini 4 Neon综合指数61分，高于GPT-6.2 Sol；Genie 4开始开放体验'
+  },
+  {
+    id: 'carbon-2',
+    title: '芯片界变天了！均分超越“GPT-6”？硬核黑马首提CDK：Fabless之后，半导体要迈入“Designless”时代了？'
+  },
+  {
+    id: 'carbon-3',
+    title: '刚刚，全球科技界彻底炸锅！4周干出650万行数学证明，AI正式攻破人类安全“终极防线”：软件无Bug时代真的来了？'
+  },
+  {
+    id: 'carbon-4',
+    title: '别再被“空翻机器人”骗了！刚刚，源策未来发布 Anchor 1：人形机器人最大的痛点，终于被中国团队干穿了！'
+  },
+  {
+    id: 'carbon-5',
+    title: '刚刚！OpenAI深夜突发大动作，GPT-6.2 Astra绝密后台数据意外泄露！AGI史诗狂飙，但我们的钱包真要被榨干了？'
+  },
+  { id: 'carbon-6', title: '' },
+  { id: 'carbon-7', title: '' },
+  { id: 'carbon-8', title: '' }
+];
+
 function Wechat() {
   const [activeTab, setActiveTab] = React.useState('official');
-  const articles = activeTab === 'official' ? officialArticles : [];
+  const isOfficial = activeTab === 'official';
+  const articles = isOfficial ? officialArticles : carbonArticles;
+  const accountName = isOfficial ? '鲁大现代农业高质量发展研究基地' : '碳基智能公众号';
 
   // 返回上一级
   const handleGoBack = () => {
@@ -350,28 +379,24 @@ function Wechat() {
           <div className="lg:w-3/4 glass-card p-6 md:p-8 min-h-[400px]">
             <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
               <div>
-                <p className="mb-1 text-xs font-semibold tracking-[0.3em] text-blue-600">OFFICIAL ACCOUNT</p>
-                <h2 className="mb-0 text-xl font-semibold text-gray-800">鲁大现代农业高质量发展研究基地</h2>
+                <p className="mb-1 text-xs font-semibold tracking-[0.3em] text-blue-600">
+                  {isOfficial ? 'OFFICIAL ACCOUNT' : 'CARBON ACCOUNT'}
+                </p>
+                <h2 className="mb-0 text-xl font-semibold text-gray-800">{accountName}</h2>
               </div>
               <span className="rounded-full bg-blue-600 px-3 py-1 text-xs font-medium text-white">
-                {activeTab === 'official' ? `${officialArticles.length} 篇文章` : '内容整理中'}
+                {articles.length} 篇文章
               </span>
             </div>
 
-            {activeTab !== 'official' ? (
-              <div className="rounded-xl border border-dashed border-blue-200 bg-white/50 p-10 text-center">
-                <p className="mb-1 font-medium text-gray-700">碳基智能公众号内容整理中</p>
-                <p className="mb-0 text-sm text-gray-500">敬请期待后续更新。</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {articles.map((article, index) => (
                   <article
                     key={article.id}
                     className="group glass-card relative overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-blue-500/15"
                   >
                     <span className="absolute left-3 top-3 z-10 max-w-[calc(100%-4rem)] truncate rounded-full bg-black/45 px-2.5 py-0.5 text-[10px] text-white backdrop-blur-sm">
-                      鲁大现代农业高质量发展研究基地
+                      {accountName}
                     </span>
                     <span className="absolute right-3 top-3 z-10 rounded-full bg-white/90 px-2 py-0.5 text-[10px] font-semibold text-blue-700">
                       {String(index + 1).padStart(2, '0')}
@@ -408,13 +433,12 @@ function Wechat() {
                         {article.title || '待补充文章标题'}
                       </h3>
                       <p className="mb-0 text-xs text-gray-500">
-                        {article.title ? '鲁大现代农业高质量发展研究基地' : '标题与正文稍后补充'}
+                        {article.title ? accountName : '标题与正文稍后补充'}
                       </p>
                     </div>
                   </article>
                 ))}
               </div>
-            )}
           </div>
         </div>
         
