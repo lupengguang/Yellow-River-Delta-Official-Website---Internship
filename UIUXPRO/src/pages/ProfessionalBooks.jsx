@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { PageBanner } from './topicPageKit';
 
 const cover = (file) => `${import.meta.env.BASE_URL}images/${file}`;
@@ -12,7 +13,8 @@ const books = [
     image: '徐新良 肖桐詹志明......青海三江源生态系统遥感监测图集.png',
     author: '徐新良、肖桐、詹志明 等',
     price: 80,
-    fit: 'contain'
+    fit: 'contain',
+    link: '/professional-books/sanjiangyuan-atlas'
   },
   {
     title: '生态环境空间信息与数字技术综合实验教程',
@@ -128,6 +130,59 @@ const books = [
     price: null
   }
 ];
+
+function BookCard({ book }) {
+  const body = (
+    <>
+      <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
+        <img
+          src={cover(book.image)}
+          alt={book.title}
+          loading="lazy"
+          className={`w-full h-full ${
+            book.fit === 'contain' ? 'object-contain p-1 bg-white' : 'object-cover'
+          } transition-transform duration-700 group-hover:scale-105`}
+        />
+        <span className="absolute left-2 top-2 rounded-full bg-black/45 px-2 py-0.5 text-[10px] text-white backdrop-blur-sm">
+          {book.category}
+        </span>
+        {book.price !== null && (
+          <span className="absolute bottom-2 right-2 rounded-full bg-rose-500/90 px-2.5 py-1 text-xs font-semibold text-white shadow-md">
+            ¥ {book.price}
+          </span>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      </div>
+      <div className="p-4">
+        <h3 className="text-sm font-semibold text-gray-800 leading-snug mb-1.5 transition-colors duration-300 group-hover:text-emerald-700">
+          {book.title}
+        </h3>
+        <p className="text-xs text-gray-500 mb-0">
+          {book.author || '作者信息待补充'}
+        </p>
+        {book.link && (
+          <p className="mt-2 mb-0 flex items-center gap-1 text-xs text-emerald-600">
+            查看图集详情
+            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </p>
+        )}
+      </div>
+    </>
+  );
+
+  const cardClass =
+    'group glass-card overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-emerald-500/10';
+
+  if (book.link) {
+    return (
+      <Link to={book.link} className={cardClass}>
+        {body}
+      </Link>
+    );
+  }
+
+  return <article className={cardClass}>{body}</article>;
+}
 
 function ProfessionalBooks() {
   const [activeCategory, setActiveCategory] = useState('全部');
@@ -248,38 +303,7 @@ function ProfessionalBooks() {
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
                 {filtered.map((book) => (
-                  <article
-                    key={book.title}
-                    className="group glass-card overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-emerald-500/10"
-                  >
-                    <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
-                      <img
-                        src={cover(book.image)}
-                        alt={book.title}
-                        loading="lazy"
-                        className={`w-full h-full ${
-                          book.fit === 'contain' ? 'object-contain p-1 bg-white' : 'object-cover'
-                        } transition-transform duration-700 group-hover:scale-105`}
-                      />
-                      <span className="absolute left-2 top-2 rounded-full bg-black/45 px-2 py-0.5 text-[10px] text-white backdrop-blur-sm">
-                        {book.category}
-                      </span>
-                      {book.price !== null && (
-                        <span className="absolute bottom-2 right-2 rounded-full bg-rose-500/90 px-2.5 py-1 text-xs font-semibold text-white shadow-md">
-                          ¥ {book.price}
-                        </span>
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                    </div>
-                    <div className="p-4">
-                      <h3 className="text-sm font-semibold text-gray-800 leading-snug mb-1.5 transition-colors duration-300 group-hover:text-emerald-700">
-                        {book.title}
-                      </h3>
-                      <p className="text-xs text-gray-500 mb-0">
-                        {book.author || '作者信息待补充'}
-                      </p>
-                    </div>
-                  </article>
+                  <BookCard key={book.title} book={book} />
                 ))}
               </div>
             )}

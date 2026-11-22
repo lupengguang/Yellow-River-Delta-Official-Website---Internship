@@ -22,6 +22,7 @@ import LegalStatement from './pages/LegalStatement';
 import DataPublishing from './pages/DataPublishing';
 import DataSearch from './pages/DataSearch';
 import ProfessionalBooks from './pages/ProfessionalBooks';
+import SanjiangyuanAtlas from './pages/SanjiangyuanAtlas';
 
 // 主页组件
 function Home() {
@@ -1206,6 +1207,7 @@ function AppContent() {
             <Route path="/data-publishing" element={<DataPublishing />} />
             <Route path="/data-search" element={<DataSearch />} />
             <Route path="/professional-books" element={<ProfessionalBooks />} />
+            <Route path="/professional-books/sanjiangyuan-atlas" element={<SanjiangyuanAtlas />} />
           </Routes>
         </div>
       </main>
