@@ -408,87 +408,177 @@ function Wechat() {
   );
 }
 
+const projectCover = (file) => `${import.meta.env.BASE_URL}images/${file}`;
+
+// 项目成果条目：级别 / 来源 / 类型 / 题目 / 起止时间 / 资助金额 / 配图
+const projectRecords = [
+  {
+    level: '国家级',
+    funder: '国家自然科学基金',
+    kind: '重点国际合作项目',
+    title: '黄河三角洲盐碱农业根土水交互过程及其机理',
+    period: '2024-2028',
+    funding: '209 万',
+    thumb: '黄河三角洲平均土壤湿度.png'
+  },
+  {
+    level: '国家级',
+    funder: '国家自然科学基金',
+    kind: '面上项目',
+    title: '黄河三角洲盐碱地蓬根际核心微生物菌群结构特征及潜在生态效应',
+    period: '2020-2023',
+    funding: '61 万',
+    thumb: '土壤质地(砂土).png'
+  },
+  {
+    level: '国家级',
+    funder: '国家自然科学基金',
+    kind: '面上项目',
+    title: '丛枝菌根真菌响应互花米草磷素竞争的微生物学机制',
+    period: '2022-2025',
+    funding: '58 万',
+    thumb: '黄河三角洲植被类型数据.png'
+  },
+  {
+    level: '国家级',
+    funder: '国家自然科学基金',
+    kind: '面上项目',
+    title: '外源氮输入驱动滨海湿地互花米草入侵的内在机制',
+    period: '2023-2026',
+    funding: '54 万',
+    thumb: '东营市自然保护区.png'
+  },
+  {
+    level: '国家级',
+    funder: '科技部外国专家局',
+    kind: '高端外国专家引进计划项目',
+    title: '变化环境下黄河三角洲农业水资源可持续管理',
+    period: '2022-2023',
+    funding: '30 万',
+    thumb: '黄河三角洲水系分布图.png'
+  },
+  {
+    level: '省部级',
+    funder: '山东省重点研发计划',
+    kind: '乡村振兴科技创新提振行动项目',
+    title: '黄河三角洲农村环境低碳循环治理关键技术集成与示范',
+    period: '2022-2024',
+    funding: '490 万',
+    thumb: '黄河三角洲土地利用数据.png'
+  },
+  {
+    level: '省部级',
+    funder: '山东省自然科学基金',
+    kind: '杰出青年项目',
+    title: '土壤水文学',
+    period: '2019-2022',
+    funding: '100 万',
+    thumb: '黄河三角洲MODIS地表蒸散发.png'
+  },
+  {
+    level: '省部级',
+    funder: '山东省泰山学者工程',
+    kind: '青年专家项目',
+    title: '黄河三角洲盐碱地水肥盐运移过程与调控',
+    period: '2019-2023',
+    funding: '100 万',
+    thumb: '黄河三角洲土壤侵蚀类型和程度空间分布数据.png'
+  },
+  {
+    level: '省部级',
+    funder: '山东省泰山学者工程',
+    kind: '青年专家项目',
+    title: '黄河三角洲特色植物与微生物互馈效应',
+    period: '2019-2023',
+    funding: '100 万',
+    thumb: '黄河三角洲NDVI.png'
+  },
+  {
+    level: '省部级',
+    funder: '山东省重点研发计划',
+    kind: '乡村振兴科技创新提振行动项目',
+    title: '沿黄区域冬小麦节水增产关键技术创新与示范',
+    period: '2024-2026',
+    funding: '170 万',
+    thumb: '黄河三角洲NPP.png'
+  }
+];
+
 function Projects() {
-  const [projects, setProjects] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
-
-  React.useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await fetch('http://localhost:8000/api/project/projects');
-        const data = await response.json();
-        
-        if (data.code === 200) {
-          setProjects(data.data);
-        } else {
-          setError(data.message || '获取项目失败');
-        }
-      } catch (err) {
-        setError('网络错误，无法获取项目数据');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProjects();
-  }, []);
-
-  const getProjectTypeLabel = (type) => {
-    const typeMap = {
-      'national': '国家级项目',
-      'provincial': '省部级项目',
-      'horizontal': '横向合作项目'
-    };
-    return typeMap[type] || type;
-  };
+  const nationalCount = projectRecords.filter((project) => project.level === '国家级').length;
 
   return (
-    <div className="py-8 bg-blue-50 min-h-screen">
+    <div className="py-10 bg-blue-50 min-h-screen">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">项目成果</h1>
-        
-        <div className="glass-card p-8">
-          <h2 className="text-xl font-semibold text-blue-700 mb-6">科研项目列表</h2>
-          
-          {loading ? (
-            <div className="text-center py-8">
-              <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600 mx-auto"></div>
-              <p className="mt-4 text-gray-600">加载中...</p>
-            </div>
-          ) : error ? (
-            <div className="text-center py-8 text-red-600">
-              <p>{error}</p>
-            </div>
-          ) : projects.length === 0 ? (
-            <div className="text-center py-8 text-gray-600">
-              <p>暂无项目成果</p>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {projects.map((project) => (
-                <div 
-                  key={project.id} 
-                  className="glass-card p-4"
-                >
-                  <h3 className="text-lg font-medium text-gray-800 mb-2">
-                    {getProjectTypeLabel(project.project_type)}：{project.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    {project.project_code && `项目编号：${project.project_code} | `}
-                    {project.funding && `资助金额：${project.funding} | `}
-                    {project.start_date && `起止时间：${project.start_date}`}
-                    {project.end_date && ` - ${project.end_date}`}
-                  </p>
-                  {project.summary && (
-                    <p className="text-gray-500 text-sm mt-2 line-clamp-2">{project.summary}</p>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
+        <Link
+          to="/other-results"
+          className="group mb-6 inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/60 px-4 py-2 text-sm text-gray-700 backdrop-blur-md transition-all duration-300 hover:-translate-x-1 hover:border-blue-200 hover:text-blue-700 hover:shadow-lg hover:shadow-blue-500/10"
+        >
+          <span className="transition-transform duration-300 group-hover:-translate-x-1">←</span>
+          返回其他成果
+        </Link>
+
+        <div className="mb-8">
+          <p className="mb-2 text-xs font-semibold tracking-[0.3em] text-blue-600">PROJECTS</p>
+          <h1 className="text-3xl font-bold text-gray-800 mb-3">项目成果</h1>
+          <p className="max-w-3xl text-gray-600">
+            展示平台团队承担的国家级、省部级科研项目及其资助情况，涵盖盐碱地治理、湿地生态、农业水资源与土壤水文等方向。
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <span className="rounded-full bg-blue-600 px-3 py-1 text-xs font-medium text-white">{projectRecords.length} 个项目</span>
+            <span className="rounded-full bg-white/70 px-3 py-1 text-xs text-blue-700">国家级 {nationalCount} 项</span>
+            <span className="rounded-full bg-white/70 px-3 py-1 text-xs text-blue-700">省部级 {projectRecords.length - nationalCount} 项</span>
+          </div>
         </div>
-        
+
+        <div className="space-y-5">
+          {projectRecords.map((project) => (
+            <article
+              key={project.title}
+              className="group glass-card relative flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-blue-500/15 sm:flex-row"
+            >
+              <div className="relative w-full shrink-0 overflow-hidden bg-gradient-to-br from-blue-500/15 to-emerald-500/15 sm:w-48 md:w-56">
+                <img
+                  src={projectCover(project.thumb)}
+                  alt={project.title}
+                  loading="lazy"
+                  className="h-36 w-full object-cover transition-transform duration-700 group-hover:scale-110 sm:h-full"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/10 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95" />
+                <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-0.5 text-[10px] font-semibold text-blue-700 shadow-sm">
+                  {project.level}
+                </span>
+                <span className="absolute bottom-3 left-3 right-3 text-[11px] leading-snug text-white/90">
+                  {project.funder}
+                </span>
+              </div>
+
+              <div className="relative flex-1 p-5 md:p-6">
+                <span className="absolute bottom-6 left-0 top-6 w-0.5 rounded-full bg-blue-500/0 transition-all duration-500 group-hover:bg-blue-500" />
+                <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+
+                <h3 className="mb-3 pr-2 text-base font-semibold leading-snug text-gray-800 transition-colors duration-300 group-hover:text-blue-700 md:text-lg">
+                  {project.title}
+                </h3>
+
+                <div className="grid grid-cols-1 gap-1 text-xs text-gray-600 sm:grid-cols-2 md:text-sm">
+                  <p className="mb-0"><span className="text-gray-500">项目来源：</span>{project.funder}</p>
+                  <p className="mb-0"><span className="text-gray-500">项目类型：</span>{project.kind}</p>
+                  <p className="mb-0"><span className="text-gray-500">起止时间：</span>{project.period}</p>
+                  <p className="mb-0"><span className="text-gray-500">项目级别：</span>{project.level}</p>
+                </div>
+
+                <div className="mt-4 flex items-end justify-between gap-3">
+                  <span className="h-px flex-1 bg-gradient-to-r from-blue-200/70 to-transparent transition-colors duration-500 group-hover:from-blue-400/70" />
+                  <span className="shrink-0 text-lg font-bold text-rose-500 transition-all duration-500 group-hover:scale-110 group-hover:text-rose-600">
+                    资助 {project.funding}
+                  </span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
         {/* 页脚信息 */}
         <div className="text-center text-gray-600 text-sm mt-8">
           <p>版权所有 © 黄河三角洲资源环境科学数据平台</p>
