@@ -25,6 +25,9 @@ import WechatEgu2027 from './pages/WechatEgu2027';
 import WechatHorticulture from './pages/WechatHorticulture';
 import WechatIsotopeForum from './pages/WechatIsotopeForum';
 import WechatQingyangStation from './pages/WechatQingyangStation';
+import WechatLDR2026 from './pages/WechatLDR2026';
+import WechatEGU2026 from './pages/WechatEGU2026';
+import WechatPaperShare from './pages/WechatPaperShare';
 import DataPublishing from './pages/DataPublishing';
 import DatasetDetail from './pages/DatasetDetail';
 import DataSearch from './pages/DataSearch';
@@ -301,14 +304,16 @@ const officialArticles = [
   {
     id: 'official-6',
     title: '鲁东大学团队参加首届土地退化与修复国际会议',
-    thumb: '鲁东大学团队参加首届土地退化与修复国际会议.png'
+    thumb: '鲁东大学团队参加首届土地退化与修复国际会议.png',
+    link: '/other-results/wechat/official-6'
   },
   {
     id: 'official-7',
     title: '赵英教授团队参加EGU2026国际学术会议并赴德国开展科研合作交流',
-    thumb: '赵英教授团队参加EGU2026国际学术会议并赴德国开展科研合作交流.png'
+    thumb: '赵英教授团队参加EGU2026国际学术会议并赴德国开展科研合作交流.png',
+    link: '/other-results/wechat/official-7'
   },
-  { id: 'official-8', title: '论文分享', thumb: '论文分享.png' }
+  { id: 'official-8', title: '论文分享', thumb: '论文分享.png', link: '/other-results/wechat/official-8' }
 ];
 
 // 碳基智能公众号文章卡片：8 篇标题已补全
@@ -1585,6 +1590,9 @@ function AppContent() {
             <Route path="/other-results/wechat/official-3" element={<WechatHorticulture />} />
             <Route path="/other-results/wechat/official-4" element={<WechatIsotopeForum />} />
             <Route path="/other-results/wechat/official-5" element={<WechatQingyangStation />} />
+            <Route path="/other-results/wechat/official-6" element={<WechatLDR2026 />} />
+            <Route path="/other-results/wechat/official-7" element={<WechatEGU2026 />} />
+            <Route path="/other-results/wechat/official-8" element={<WechatPaperShare />} />
             <Route path="/other-results/projects" element={<Projects />} />
             <Route path="/other-results/literature" element={<Literature />} />
             <Route path="/help-center" element={<HelpCenter />} />
