@@ -28,6 +28,7 @@ import WechatQingyangStation from './pages/WechatQingyangStation';
 import WechatLDR2026 from './pages/WechatLDR2026';
 import WechatEGU2026 from './pages/WechatEGU2026';
 import WechatPaperShare from './pages/WechatPaperShare';
+import WechatGeminiNeon from './pages/WechatGeminiNeon';
 import DataPublishing from './pages/DataPublishing';
 import DatasetDetail from './pages/DatasetDetail';
 import DataSearch from './pages/DataSearch';
@@ -321,7 +322,8 @@ const carbonArticles = [
   {
     id: 'carbon-1',
     title: '谷歌一夜连发两张牌：Gemini 4 Neon综合指数61分，高于GPT-6.2 Sol；Genie 4开始开放体验',
-    thumb: '谷歌一夜连发两张牌：Gemini 4 Neon综合指数61分，高于GPT-6.2 Sol；Genie 4开始开放体验.webp'
+    thumb: '谷歌一夜连发两张牌：Gemini 4 Neon综合指数61分，高于GPT-6.2 Sol；Genie 4开始开放体验.webp',
+    link: '/other-results/wechat/carbon-1'
   },
   {
     id: 'carbon-2',
@@ -1593,6 +1595,7 @@ function AppContent() {
             <Route path="/other-results/wechat/official-6" element={<WechatLDR2026 />} />
             <Route path="/other-results/wechat/official-7" element={<WechatEGU2026 />} />
             <Route path="/other-results/wechat/official-8" element={<WechatPaperShare />} />
+            <Route path="/other-results/wechat/carbon-1" element={<WechatGeminiNeon />} />
             <Route path="/other-results/projects" element={<Projects />} />
             <Route path="/other-results/literature" element={<Literature />} />
             <Route path="/help-center" element={<HelpCenter />} />
